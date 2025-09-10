@@ -1,10 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectScript : MonoBehaviour
 {
     public GameObject[] vehicles;
     [HideInInspector]
-    public Vector2[] startCoor;
+    public Vector2[] startCoordinates;
     public Canvas can;
     public AudioSource effects;
     public AudioClip[] audioCli;
@@ -12,13 +14,16 @@ public class ObjectScript : MonoBehaviour
     public bool rightPlace = false;
     public GameObject lastDragged = null;
 
+
     void Awake()
     {
-        startCoor = new Vector2[vehicles.Length];
+        startCoordinates = new Vector2[vehicles.Length];
+        Debug.Log(vehicles.Length);
+        Debug.Log(startCoordinates.Length);
         for (int i = 0; i < vehicles.Length; i++)
         {
-            startCoor[i] = vehicles[i].GetComponent<RectTransform>().localPosition;
+            startCoordinates[i] = vehicles[i].GetComponent<RectTransform>().localPosition;
+            Debug.Log(vehicles[i].GetComponent<RectTransform>().localPosition);
         }
-        
     }
 }
