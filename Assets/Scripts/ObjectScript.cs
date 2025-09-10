@@ -14,6 +14,7 @@ public class ObjectScript : MonoBehaviour
 
     void Awake()
     {
+        startCoor = new Vector2[vehicles.Length];
         for (int i = 0; i < vehicles.Length; i++)
         {
             startCoor[i] = vehicles[i].GetComponent<RectTransform>().localPosition;
