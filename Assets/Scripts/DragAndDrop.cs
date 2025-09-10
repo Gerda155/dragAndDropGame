@@ -61,6 +61,25 @@ public class DragAndDrop : MonoBehaviour,
         }
     }
 
+    public void onEndDrag(PointerEventData eventData)
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            objectScr.lastDragged = eventData.pointerDrag;
+            canvasGro.blocksRaycasts = true;
+            canvasGro.alpha = 1.0f;
+
+            if (objectScr.rightPlace)
+            {
+                canvasGro.blocksRaycasts = false;
+                objectScr.lastDragged = null;
+
+            }
+
+            objectScr.rightPlace = false;
+        }
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("OnBeginDrag");

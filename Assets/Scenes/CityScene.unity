@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectScr: {fileID: 740771776}
-  screenBou: {fileID: 0}
+  screenBou: {fileID: 740771778}
 --- !u!225 &160717716
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -922,7 +922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectScr: {fileID: 740771776}
-  screenBou: {fileID: 0}
+  screenBou: {fileID: 740771778}
 --- !u!1 &740771775
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +957,7 @@ MonoBehaviour:
   - {fileID: 1905923500}
   - {fileID: 675847855}
   - {fileID: 1068954799}
-  startCoor: {x: 0, y: 0}
+  startCoor: []
   can: {fileID: 35316755}
   effects: {fileID: 1334458889}
   audioCli:
@@ -1264,7 +1264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectScr: {fileID: 740771776}
-  screenBou: {fileID: 0}
+  screenBou: {fileID: 740771778}
 --- !u!1 &1081544813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,7 +1505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectScr: {fileID: 740771776}
-  screenBou: {fileID: 0}
+  screenBou: {fileID: 740771778}
 --- !u!225 &1264835082
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1770,7 +1770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectScr: {fileID: 740771776}
-  screenBou: {fileID: 0}
+  screenBou: {fileID: 740771778}
 --- !u!225 &1619757352
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2039,7 +2039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectScr: {fileID: 740771776}
-  screenBou: {fileID: 0}
+  screenBou: {fileID: 740771778}
 --- !u!1 &1952951271
 GameObject:
   m_ObjectHideFlags: 0
