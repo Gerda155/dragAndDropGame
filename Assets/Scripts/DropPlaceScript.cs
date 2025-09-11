@@ -36,10 +36,45 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler
                 if((rotDiff <= 5 || (rotDiff >= 355 && rotDiff <= 360)) &&
                     (xSizeDiff <= 0.05 && ySizeDiff <= 0.05)) {
                     Debug.Log("Correct place");
-                    //.......
+                    objScript.rightPlace = true;
+                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+                    eventData.pointerDrag.GetComponent<RectTransform>().localRotation = GetComponent<RectTransform>().localRotation;
+                    eventData.pointerDrag.GetComponent<RectTransform>().localScale = GetComponent<RectTransform>().localScale;
+
+                    switch(eventData.pointerDrag.tag)
+                    {
+                        case "Garbage":
+                            objScript.effects.PlayOneShot(objScript.audioCli[0]);
+                            break;
+
+                        case "Medicine":
+                            objScript.effects.PlayOneShot(objScript.audioCli[1]);
+                            break;
+
+                        case "Fire":
+                            objScript.effects.PlayOneShot(objScript.audioCli[2]);
+                            break;
+
+                        case "b2":
+                            objScript.effects.PlayOneShot(objScript.audioCli[3]);
+                            break;
+
+                        case "cement":
+                            objScript.effects.PlayOneShot(objScript.audioCli[4]);
+                            break;
+
+                        case "buss":
+                            objScript.effects.PlayOneShot(objScript.audioCli[5]);
+                            break;
+
+                        default:
+                            Debug.Log("Unknown tag detected");
+                            break;
+                    }
                 }
 
-            } else
+            }
+            else
             {
                 objScript.rightPlace = false;
                 objScript.effects.PlayOneShot(objScript.audioCli[1]);
@@ -59,6 +94,21 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler
                     case "Fire":
                         objScript.vehicles[2].GetComponent<RectTransform>().localPosition =
                            objScript.startCoordinates[2];
+                        break;
+
+                    case "b2":
+                        objScript.vehicles[3].GetComponent<RectTransform>().localPosition =
+                           objScript.startCoordinates[3];
+                        break;
+
+                    case "cement":
+                        objScript.vehicles[4].GetComponent<RectTransform>().localPosition =
+                           objScript.startCoordinates[4];
+                        break;
+
+                    case "buss":
+                        objScript.vehicles[5].GetComponent<RectTransform>().localPosition =
+                           objScript.startCoordinates[5];
                         break;
 
                     default:
