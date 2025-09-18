@@ -56,8 +56,40 @@ public class flyingObjectsScript : MonoBehaviour
         if (ObjectScript.drag && !isFadingOut && RectTransformUtility.RectangleContainsScreenPoint(rectTransform, Input.mousePosition, Camera.main))
         {
             Debug.Log("The cursor collided with a flying object");
-            //.........................................................
+
+            if(ObjectScript.lastDragged != null)
+            {
+                StartCoroutine(ShrinkAndDestroy(ObjectScript.lastDragged, 0.5f));
+                ObjectScript.lastDragged = null;
+                ObjectScript.drag = false;
+            }
+
+            StartCoroutine(FadeOutDestroy());
+            isFadingOut = true;
+
+            image.color = Color.red;
+            StartCoroutine(RecoverColor());
+
+            objectScript.effects.PlayOneShot(objectScript.audioCli[6]);
+
+            StartCoroutine(Vibrate());
         }
+    }
+
+    IEnumerator Vibrate()
+    {
+        Vector2 originalPosition = rectTransform.anchoredPosition;
+        float duration = 0.3f;
+        float elpased = 0f;
+        float intensity = 5f;
+
+        while (elpased < duration)
+        {
+            rectTransform.anchoredPosition = originalPosition + Random.insideUnitCircle * intensity;
+            elpased += Time.deltaTime;
+            yield return null;
+        }
+        rectTransform.anchoredPosition = originalPosition;
     }
 
     IEnumerator FadeIn()
@@ -84,5 +116,29 @@ public class flyingObjectsScript : MonoBehaviour
         }
         canvasGroup.alpha = 0f;
         Destroy(gameObject);
+    }
+
+    IEnumerator ShrinkAndDestroy(GameObject target, float duration)
+    {
+        Vector3 originalScale = target.transform.localScale;
+        Quaternion originalRotation = target.transform.rotation;
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            target.transform.localScale = Vector3.Lerp(originalScale, Vector3.zero, t/duration);
+            float angle = Mathf.Lerp(0f, 360f, t / duration);
+            target.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+            yield return null;
+        }
+        Destroy(target);
+    }
+
+    IEnumerator RecoverColor()
+    {
+        yield return new WaitForSeconds(0.5f);
+        image.color = originalColor;
     }
 }
