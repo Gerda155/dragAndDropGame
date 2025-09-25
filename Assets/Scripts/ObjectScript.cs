@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObjectScript : MonoBehaviour
 {
     public GameObject[] vehicles;
+    public Transform[] spawnPoints;
     [HideInInspector]
     public Vector2[] startCoordinates;
     public Canvas can;
@@ -19,12 +20,36 @@ public class ObjectScript : MonoBehaviour
     void Awake()
     {
         startCoordinates = new Vector2[vehicles.Length];
-        Debug.Log(vehicles.Length);
-        Debug.Log(startCoordinates.Length);
+
+        Transform[] availablePoints = spawnPoints.Clone() as Transform[];
+
         for (int i = 0; i < vehicles.Length; i++)
         {
-            startCoordinates[i] = vehicles[i].GetComponent<RectTransform>().localPosition;
-            Debug.Log(vehicles[i].GetComponent<RectTransform>().localPosition);
+            if (availablePoints.Length == 0)
+            {
+                Debug.LogWarning("Nau brivas vietas lol!");
+                break;
+            }
+
+            int randomIndex = Random.Range(0, availablePoints.Length);
+            Transform point = availablePoints[randomIndex];
+
+            vehicles[i].GetComponent<RectTransform>().localPosition = point.localPosition;
+            startCoordinates[i] = point.localPosition;
+
+            availablePoints = RemoveAt(availablePoints, randomIndex);
         }
     }
+
+    private Transform[] RemoveAt(Transform[] array, int index)
+    {
+        Transform[] newArray = new Transform[array.Length - 1];
+        for (int i = 0, j = 0; i < array.Length; i++)
+        {
+            if (i == index) continue;
+            newArray[j++] = array[i];
+        }
+        return newArray;
+    }
+
 }
