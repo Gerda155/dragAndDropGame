@@ -2547,6 +2547,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 408df7a417ebc0f429ed5192c5f573b2, type: 3}
   - {fileID: 8300000, guid: c70cafc2f87699f4a83f5bda02c9a8f4, type: 3}
   - {fileID: 8300000, guid: b83e4c61d54ecbf4a96fbf3d043e7fdd, type: 3}
+  - {fileID: 8300000, guid: 3ac0dec7eb150cf4493c22b8c248f3f7, type: 3}
   rightPlace: 0
 --- !u!4 &1310376411
 Transform:
@@ -2626,6 +2627,7 @@ MonoBehaviour:
   - {fileID: 6285166934946355477, guid: ac4d5f21277f18345ba2a707a90280cc, type: 3}
   - {fileID: 5578290683445255099, guid: adddfabc37c5cfa46a5b93aa3c8586b5, type: 3}
   - {fileID: 2549744821702696453, guid: 95e27eda1af8a7647884346feb719ec4, type: 3}
+  - {fileID: 8420897729918004769, guid: a492391b88c16f34abb9ffbfbb21d8d2, type: 3}
   objectPrefabs:
   - {fileID: 2345236549675807412, guid: cf21be65d3b67094ca1491ccdff112d9, type: 3}
   - {fileID: 4991298735876722977, guid: d6e02b27653e8cf4bbebe514947b22aa, type: 3}
