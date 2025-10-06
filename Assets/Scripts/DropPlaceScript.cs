@@ -47,6 +47,28 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler
                     eventData.pointerDrag.GetComponent<RectTransform>().localScale =
                         GetComponent<RectTransform>().localScale;
 
+                    Debug.Log("Correct place");
+                    objScript.rightPlace = true;
+                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition =
+                        GetComponent<RectTransform>().anchoredPosition;
+
+                    eventData.pointerDrag.GetComponent<RectTransform>().localRotation =
+                        GetComponent<RectTransform>().localRotation;
+
+                    eventData.pointerDrag.GetComponent<RectTransform>().localScale =
+                        GetComponent<RectTransform>().localScale;
+                    
+                    for (int i = 0; i < objScript.vehicles.Length; i++)
+                    {
+                        if (objScript.vehicles[i].CompareTag(eventData.pointerDrag.tag))
+                        {
+                            objScript.onRightPlaces[i] = true;
+                            break;
+                        }
+                    }
+
+                    objScript.CheckWin();
+
 
                     switch (eventData.pointerDrag.tag)
                     {
