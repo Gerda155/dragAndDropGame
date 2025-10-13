@@ -7,7 +7,6 @@ TagManager:
   - Garbage
   - Medicine
   - Fire
-  - Buss
   - b2
   - cement
   - tractor5
@@ -15,6 +14,9 @@ TagManager:
   - police
   - e46
   - bomb
+  - e61
+  - tractor
+  - buss
   layers:
   - Default
   - TransparentFX

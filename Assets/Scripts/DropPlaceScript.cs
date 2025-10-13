@@ -8,8 +8,6 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler
     private float xSizeDiff, ySizeDiff;
     public ObjectScript objScript;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void OnDrop(PointerEventData eventData)
     {
         if ((eventData.pointerDrag != null) &&
@@ -57,7 +55,7 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler
 
                     eventData.pointerDrag.GetComponent<RectTransform>().localScale =
                         GetComponent<RectTransform>().localScale;
-                    
+
                     for (int i = 0; i < objScript.vehicles.Length; i++)
                     {
                         if (objScript.vehicles[i].CompareTag(eventData.pointerDrag.tag))
@@ -93,23 +91,31 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler
                             break;
 
                         case "b2":
-                            objScript.effects.PlayOneShot(objScript.audioCli[6]);
+                            objScript.effects.PlayOneShot(objScript.audioCli[13]);
                             break;
 
                         case "tractor5":
-                            objScript.effects.PlayOneShot(objScript.audioCli[7]);
+                            objScript.effects.PlayOneShot(objScript.audioCli[14]);
                             break;
 
                         case "exalator":
-                            objScript.effects.PlayOneShot(objScript.audioCli[7]);
-                            break;
-
-                        case "police":
                             objScript.effects.PlayOneShot(objScript.audioCli[8]);
                             break;
 
-                        case "e46":
+                        case "police":
                             objScript.effects.PlayOneShot(objScript.audioCli[9]);
+                            break;
+
+                        case "e46":
+                            objScript.effects.PlayOneShot(objScript.audioCli[10]);
+                            break;
+
+                        case "e61":
+                            objScript.effects.PlayOneShot(objScript.audioCli[11]);
+                            break;
+
+                        case "tractor":
+                            objScript.effects.PlayOneShot(objScript.audioCli[12]);
                             break;
 
                         default:
@@ -122,7 +128,7 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler
             else
             {
                 objScript.rightPlace = false;
-                objScript.effects.PlayOneShot(objScript.audioCli[0]);
+                objScript.effects.PlayOneShot(objScript.audioCli[15]);
 
                 switch (eventData.pointerDrag.tag)
                 {
@@ -152,28 +158,38 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler
                         break;
 
                     case "b2":
+                        objScript.vehicles[9].GetComponent<RectTransform>().localPosition =
+                           objScript.startCoordinates[9];
+                        break;
+
+                    case "tractor5":
                         objScript.vehicles[5].GetComponent<RectTransform>().localPosition =
                            objScript.startCoordinates[5];
                         break;
 
-                    case "tractor5":
+                    case "exalator":
                         objScript.vehicles[6].GetComponent<RectTransform>().localPosition =
                            objScript.startCoordinates[6];
                         break;
 
-                    case "exalator":
+                    case "police":
                         objScript.vehicles[7].GetComponent<RectTransform>().localPosition =
                            objScript.startCoordinates[7];
                         break;
 
-                    case "police":
+                    case "e46":
                         objScript.vehicles[8].GetComponent<RectTransform>().localPosition =
                            objScript.startCoordinates[8];
                         break;
 
-                    case "e46":
-                        objScript.vehicles[9].GetComponent<RectTransform>().localPosition =
-                           objScript.startCoordinates[9];
+                    case "e61":
+                        objScript.vehicles[10].GetComponent<RectTransform>().localPosition =
+                           objScript.startCoordinates[10];
+                        break;
+
+                    case "tractor":
+                        objScript.vehicles[11].GetComponent<RectTransform>().localPosition =
+                           objScript.startCoordinates[11];
                         break;
 
                     default:

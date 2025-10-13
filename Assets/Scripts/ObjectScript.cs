@@ -1,43 +1,28 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ObjectScript : MonoBehaviour
 {
     public GameObject[] vehicles;
     public Transform[] spawnPoints;
-    [HideInInspector]
-    public Vector2[] startCoordinates;
+    [HideInInspector] public Vector2[] startCoordinates;
     public Canvas can;
     public AudioSource effects;
     public AudioClip[] audioCli;
-    [HideInInspector]
-    public bool rightPlace = false;
+    [HideInInspector] public bool rightPlace = false;
     public bool[] onRightPlaces;
     public static GameObject lastDragged = null;
     public static bool drag = false;
     public GameObject winPanel;
+    public GameObject losePanel;
     public float gameTime;
     private bool timerRunning = false;
     public Text timeText;
-    public GameObject[] stars; 
-
-    void Start()
-    {
-        onRightPlaces = new bool[vehicles.Length];
-        winPanel.SetActive(false);
-        gameTime = 0f;
-        timerRunning = true;
-    }
-
-    void Update()
-    {
-        if (timerRunning)
-            gameTime += Time.deltaTime;
-    }
-
-
+    public GameObject[] stars;
+    public Transform starsParent;
+    public bool gameEnded = false;
 
     void Awake()
     {
@@ -49,7 +34,7 @@ public class ObjectScript : MonoBehaviour
         {
             if (availablePoints.Length == 0)
             {
-                Debug.LogWarning("Nau brivas vietas lol!");
+                Debug.LogWarning("Nav brivas vietas!");
                 break;
             }
 
@@ -63,34 +48,89 @@ public class ObjectScript : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        onRightPlaces = new bool[vehicles.Length];
+        if (winPanel != null) winPanel.SetActive(false);
+        if (losePanel != null) losePanel.SetActive(false);
+        gameTime = 0f;
+        timerRunning = true;
+        gameEnded = false;
+    }
+
+    void Update()
+    {
+        if (timerRunning && !gameEnded)
+            gameTime += Time.deltaTime;
+    }
     public void CheckWin()
     {
-        foreach (bool placed in onRightPlaces)
+        if (gameEnded) return;
+
+        for (int i = 0; i < onRightPlaces.Length; i++)
         {
-            if (!placed)
+            if (!onRightPlaces[i])
                 return;
         }
 
         timerRunning = false;
+        gameEnded = true;
 
-        Debug.Log("Uzvara!");
-        winPanel.SetActive(true);
-        effects.PlayOneShot(audioCli[10]);
+        if (winPanel != null) winPanel.SetActive(true);
+        if (effects != null && audioCli.Length > 10) effects.PlayOneShot(audioCli[16]);
 
         int hours = Mathf.FloorToInt(gameTime / 3600);
         int minutes = Mathf.FloorToInt((gameTime % 3600) / 60);
         int seconds = Mathf.FloorToInt(gameTime % 60);
-        timeText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
 
-        float t = gameTime; 
-        int earnedStars = 0;
+        string timeStr = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
+        if (timeText != null)
+            timeText.text = timeStr;
 
-        if (t <= 30f) earnedStars = 3;
-        else if (t <= 60f) earnedStars = 2;
+        Debug.Log($"Spele pavaditais laiks: {timeStr}");
+
+        int earnedStars = 1;
+        float secondsElapsed = Mathf.Floor(gameTime);
+
+        if (secondsElapsed < 120f) earnedStars = 3;
+        else if (secondsElapsed < 180f) earnedStars = 2;
         else earnedStars = 1;
 
-        for (int i = 0; i < stars.Length; i++)
-            stars[i].SetActive(i < earnedStars);
+        Debug.Log($"Iegutas zvaigznes: {earnedStars}");
+
+        if (starsParent != null)
+        {
+            foreach (Transform child in starsParent)
+                Destroy(child.gameObject);
+        }
+
+        if (stars != null && stars.Length > 0)
+        {
+            float spacing = 100f;
+            Vector3 startPos = starsParent.localPosition - new Vector3(spacing * (earnedStars - 1) / 2f, 0f, 0f);
+
+            for (int i = 0; i < earnedStars; i++)
+            {
+                if (i >= stars.Length) break;
+                if (stars[i] == null) continue;
+
+                GameObject star = Instantiate(stars[i], starsParent);
+                star.transform.localScale = Vector3.zero;
+                star.transform.localPosition = startPos + new Vector3(spacing * i, 0f, 0f);
+                StartCoroutine(AnimateStar(star.transform));
+            }
+        }
+    }
+
+    public void VehicleDestroyed(GameObject vehicle)
+    {
+        if (gameEnded) return;
+
+        timerRunning = false;
+        gameEnded = true;
+        Debug.Log("Game Over — vehicle destroyed");
+        effects.PlayOneShot(audioCli[0]);
+        losePanel.SetActive(true);
     }
 
     private Transform[] RemoveAt(Transform[] array, int index)
@@ -106,14 +146,25 @@ public class ObjectScript : MonoBehaviour
 
     public void RestartGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(
-            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void BackToMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene"); 
+        SceneManager.LoadScene("StartScene");
     }
 
+    IEnumerator AnimateStar(Transform star)
+    {
+        float t = 0f;
+        while (t < 0.4f)
+        {
+            t += Time.deltaTime;
+            float scale = Mathf.Lerp(0f, 1.2f, t / 0.4f);
+            star.localScale = Vector3.one * scale;
+            yield return null;
+        }
+        star.localScale = Vector3.one;
+    }
 
 }

@@ -65,8 +65,11 @@ public class flyingObjectsScript : MonoBehaviour
         {
             Debug.Log("The cursor collided with a flying object");
 
-            if(ObjectScript.lastDragged != null)
+            if (ObjectScript.lastDragged != null)
             {
+                if (objectScript != null)
+                    objectScript.VehicleDestroyed(ObjectScript.lastDragged);
+
                 StartCoroutine(ShrinkAndDestroy(ObjectScript.lastDragged, 0.5f));
                 ObjectScript.lastDragged = null;
                 ObjectScript.drag = false;
