@@ -43,8 +43,15 @@ public class ObjectScript : MonoBehaviour
             int randomIndex = Random.Range(0, availablePoints.Length);
             Transform point = availablePoints[randomIndex];
 
-            vehicles[i].GetComponent<RectTransform>().localPosition = point.localPosition;
+            RectTransform vehicleRect = vehicles[i].GetComponent<RectTransform>();
+            vehicleRect.localPosition = point.localPosition;
             startCoordinates[i] = point.localPosition;
+
+            float randomRotation = Random.Range(-180f, 180f);
+            vehicleRect.localRotation = Quaternion.Euler(0f, 0f, randomRotation);
+
+            float randomScale = Random.Range(0.8f, 1.1f);
+            vehicleRect.localScale = new Vector3(randomScale, randomScale, 1f);
 
             availablePoints = RemoveAt(availablePoints, randomIndex);
         }
@@ -69,6 +76,7 @@ public class ObjectScript : MonoBehaviour
             availableDropPoints = RemoveAt(availableDropPoints, randomIndex);
         }
     }
+
 
     void Start()
     {
