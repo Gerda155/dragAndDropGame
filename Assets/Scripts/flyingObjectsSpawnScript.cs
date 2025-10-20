@@ -36,6 +36,11 @@ public class flyingObjectsSpawnScript : MonoBehaviour
         Vector3 spawPosition = new Vector3(spawnPoint.position.x, y, spawnPoint.position.z);
 
         GameObject cloud = Instantiate(cloudPrefab, spawPosition, Quaternion.identity, spawnPoint);
+
+        cloud.transform.SetParent(spawnPoint.root, false); 
+        cloud.transform.position = spawnPoint.position;    
+        cloud.transform.SetAsLastSibling();
+
         float movementSpeed = Random.Range(cloudMinSpeed, cloudMaxSpeed);
         flyingObjectsScript controller = cloud.GetComponent<flyingObjectsScript>();
         controller.speed = movementSpeed;
@@ -52,6 +57,12 @@ public class flyingObjectsSpawnScript : MonoBehaviour
         Vector3 spawPosition = new Vector3(-spawnPoint.position.x, y, spawnPoint.position.z);
 
         GameObject flyObject = Instantiate(objectPrefab, spawPosition, Quaternion.identity, spawnPoint);
+
+        flyObject.transform.SetParent(spawnPoint.root, false);
+        flyObject.transform.position = new Vector3(-spawnPoint.position.x, y, spawnPoint.position.z);
+        flyObject.transform.SetAsLastSibling();
+
+
         float movementSpeed = Random.Range(objectMinSpeed, objectMaxSpeed);
         flyingObjectsScript controller = flyObject.GetComponent<flyingObjectsScript>();
         controller.speed = -movementSpeed;

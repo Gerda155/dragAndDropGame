@@ -10,12 +10,16 @@ public class DragAndDropScript : MonoBehaviour, IPointerDownHandler, IBeginDragH
     private RectTransform rectTra;
     public ObjectScript objectScr;
     public ScreenBoundriesScript screenBou;
+    private int originalIndex;
 
     // Start is called before the first frame update
     void Start()
     {
         canvasGro = GetComponent<CanvasGroup>();
         rectTra = GetComponent<RectTransform>();
+        canvasGro = GetComponent<CanvasGroup>();
+        rectTra = GetComponent<RectTransform>();
+        originalIndex = rectTra.GetSiblingIndex();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -75,11 +79,10 @@ public class DragAndDropScript : MonoBehaviour, IPointerDownHandler, IBeginDragH
             {
                canvasGro.blocksRaycasts = false;
                 ObjectScript.lastDragged = null;
-
-
             }
             
             objectScr.rightPlace = false;
+            rectTra.SetSiblingIndex(originalIndex);
         }
     }
 }
