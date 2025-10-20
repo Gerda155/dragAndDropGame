@@ -33,19 +33,16 @@ public class flyingObjectsSpawnScript : MonoBehaviour
         GameObject cloudPrefab = cloudsPrefabs[Random.Range(0, cloudsPrefabs.Length)];
         float y = Random.Range(minY, maxY);
 
-        Vector3 spawPosition = new Vector3(spawnPoint.position.x, y, spawnPoint.position.z);
+        Vector3 spawnPosition = new Vector3(spawnPoint.position.x, y, spawnPoint.position.z);
 
-        GameObject cloud = Instantiate(cloudPrefab, spawPosition, Quaternion.identity, spawnPoint);
-
-        cloud.transform.SetParent(spawnPoint.root, false); 
-        cloud.transform.position = spawnPoint.position;    
+        GameObject cloud = Instantiate(cloudPrefab, spawnPosition, Quaternion.identity, spawnPoint.parent);
         cloud.transform.SetAsLastSibling();
 
         float movementSpeed = Random.Range(cloudMinSpeed, cloudMaxSpeed);
         flyingObjectsScript controller = cloud.GetComponent<flyingObjectsScript>();
         controller.speed = movementSpeed;
     }
-    
+
     void SpawnObject()
     {
         if (objectPrefabs.Length == 0)
@@ -54,14 +51,10 @@ public class flyingObjectsSpawnScript : MonoBehaviour
         GameObject objectPrefab = objectPrefabs[Random.Range(0, objectPrefabs.Length)];
         float y = Random.Range(minY, maxY);
 
-        Vector3 spawPosition = new Vector3(-spawnPoint.position.x, y, spawnPoint.position.z);
+        Vector3 spawnPosition = new Vector3(-spawnPoint.position.x, y, spawnPoint.position.z);
 
-        GameObject flyObject = Instantiate(objectPrefab, spawPosition, Quaternion.identity, spawnPoint);
-
-        flyObject.transform.SetParent(spawnPoint.root, false);
-        flyObject.transform.position = new Vector3(-spawnPoint.position.x, y, spawnPoint.position.z);
+        GameObject flyObject = Instantiate(objectPrefab, spawnPosition, Quaternion.identity, spawnPoint.parent);
         flyObject.transform.SetAsLastSibling();
-
 
         float movementSpeed = Random.Range(objectMinSpeed, objectMaxSpeed);
         flyingObjectsScript controller = flyObject.GetComponent<flyingObjectsScript>();

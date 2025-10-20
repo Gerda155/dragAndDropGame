@@ -120,6 +120,12 @@ public class ObjectScript : MonoBehaviour
                 StartCoroutine(AnimateStar(star.transform));
             }
         }
+
+        flyingObjectsScript[] flyingObjects = FindObjectsOfType<flyingObjectsScript>();
+        foreach (var obj in flyingObjects)
+        {
+            Destroy(obj.gameObject);
+        }
     }
 
     public void VehicleDestroyed(GameObject vehicle)
