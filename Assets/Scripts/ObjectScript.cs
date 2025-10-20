@@ -131,6 +131,10 @@ public class ObjectScript : MonoBehaviour
         Debug.Log("Game Over — vehicle destroyed");
         effects.PlayOneShot(audioCli[0]);
         losePanel.SetActive(true);
+        foreach (var v in vehicles)
+        {
+            v.SetActive(false);
+        }
     }
 
     private Transform[] RemoveAt(Transform[] array, int index)

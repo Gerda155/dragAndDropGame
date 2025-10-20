@@ -38,6 +38,8 @@ public class flyingObjectsScript : MonoBehaviour
 
     void Update()
     {
+        if (objectScript.gameEnded) return;
+
         float waveOffset = Mathf.Sin(Time.time * waveFrequency) * waveAmplitude;
         rectTransform.anchoredPosition += new Vector2(-speed * Time.deltaTime, waveOffset * Time.deltaTime);
 

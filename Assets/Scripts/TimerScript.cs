@@ -5,9 +5,18 @@ public class TimerScript : MonoBehaviour
 {
     public Text timerText;
     private float elapsedTime = 0f;
+    private ObjectScript objectScript;
+
+    void Start()
+    {
+        objectScript = FindFirstObjectByType<ObjectScript>();
+    }
 
     void Update()
     {
+        if (objectScript != null && objectScript.gameEnded)
+            return;
+
         elapsedTime += Time.deltaTime;
 
         int hours = Mathf.FloorToInt(elapsedTime / 3600f);
@@ -16,5 +25,4 @@ public class TimerScript : MonoBehaviour
 
         timerText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
     }
-
 }
