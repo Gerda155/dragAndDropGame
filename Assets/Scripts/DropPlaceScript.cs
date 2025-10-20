@@ -130,6 +130,15 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler
                 objScript.rightPlace = false;
                 objScript.effects.PlayOneShot(objScript.audioCli[15]);
 
+                for (int i = 0; i < objScript.dropPlaces.Length; i++)
+                {
+                    if (objScript.dropPlaces[i].CompareTag(eventData.pointerDrag.tag))
+                    {
+                        objScript.dropPlaces[i].localPosition = objScript.dropStartCoordinates[i];
+                        break;
+                    }
+                }
+
                 switch (eventData.pointerDrag.tag)
                 {
                     case "Garbage":

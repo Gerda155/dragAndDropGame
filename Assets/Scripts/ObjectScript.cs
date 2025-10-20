@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 public class ObjectScript : MonoBehaviour
 {
     public GameObject[] vehicles;
+    public Transform[] dropPlaces;
     public Transform[] spawnPoints;
     [HideInInspector] public Vector2[] startCoordinates;
     public Canvas can;
     public AudioSource effects;
     public AudioClip[] audioCli;
+    [HideInInspector] public Vector2[] dropStartCoordinates;
     [HideInInspector] public bool rightPlace = false;
     public bool[] onRightPlaces;
     public static GameObject lastDragged = null;
@@ -45,6 +47,26 @@ public class ObjectScript : MonoBehaviour
             startCoordinates[i] = point.localPosition;
 
             availablePoints = RemoveAt(availablePoints, randomIndex);
+        }
+
+        dropStartCoordinates = new Vector2[dropPlaces.Length];
+        Transform[] availableDropPoints = spawnPoints.Clone() as Transform[];
+
+        for (int i = 0; i < dropPlaces.Length; i++)
+        {
+            if (availableDropPoints.Length == 0)
+            {
+                Debug.LogWarning("Nav brivas vietas drop laukiem!");
+                break;
+            }
+
+            int randomIndex = Random.Range(0, availableDropPoints.Length);
+            Transform point = availableDropPoints[randomIndex];
+
+            dropPlaces[i].localPosition = point.localPosition;
+            dropStartCoordinates[i] = point.localPosition;
+
+            availableDropPoints = RemoveAt(availableDropPoints, randomIndex);
         }
     }
 
@@ -140,6 +162,12 @@ public class ObjectScript : MonoBehaviour
         foreach (var v in vehicles)
         {
             v.SetActive(false);
+        }
+
+        flyingObjectsScript[] flyingObjects = FindObjectsOfType<flyingObjectsScript>();
+        foreach (var obj in flyingObjects)
+        {
+            Destroy(obj.gameObject);
         }
     }
 
