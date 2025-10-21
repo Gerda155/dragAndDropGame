@@ -198,6 +198,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26789540}
   m_CullTransparentMesh: 1
+--- !u!1 &30526226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30526227}
+  m_Layer: 5
+  m_Name: carSpawn (37)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &30526227
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30526226}
+  m_LocalRotation: {x: -0, y: -0, z: -0.004384475, w: 0.99999046}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.502}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 856, y: -416}
+  m_SizeDelta: {x: 142.6153, y: 41.8381}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &66540062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 66540063}
+  m_Layer: 5
+  m_Name: carSpawn (40)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &66540063
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66540062}
+  m_LocalRotation: {x: -0, y: -0, z: 0.70560986, w: 0.7086006}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.758}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 477, y: -151}
+  m_SizeDelta: {x: 134.5648, y: 127.3167}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &81831084
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +382,41 @@ RectTransform:
   m_AnchoredPosition: {x: 337.29, y: 58.7662}
   m_SizeDelta: {x: 44.9258, y: 511.5897}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &115316863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 115316864}
+  m_Layer: 5
+  m_Name: carSpawn (36)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &115316864
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115316863}
+  m_LocalRotation: {x: -0, y: -0, z: -0.004384475, w: 0.99999046}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.502}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 849, y: -495}
+  m_SizeDelta: {x: 142.6153, y: 41.8381}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &130839832
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +452,76 @@ RectTransform:
   m_AnchoredPosition: {x: 58.215008, y: -168.67404}
   m_SizeDelta: {x: 44.9258, y: 622.1707}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &148644170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 148644171}
+  m_Layer: 5
+  m_Name: carSpawn (27)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &148644171
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148644170}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7074891, w: 0.7067243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -33.974, y: -392}
+  m_SizeDelta: {x: 76.4841, y: 112.6427}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &163704217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 163704218}
+  m_Layer: 5
+  m_Name: carSpawn (38)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &163704218
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163704217}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7048529, w: -0.7093535}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.635}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 896, y: -163}
+  m_SizeDelta: {x: 89.3142, y: 74.9154}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &190819162
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,8 +554,43 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 524.88556, y: -485.13916}
-  m_SizeDelta: {x: 109.9344, y: 504.0173}
+  m_AnchoredPosition: {x: 309.7177, y: -485.3719}
+  m_SizeDelta: {x: 109.9344, y: 73.6813}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &225511294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 225511295}
+  m_Layer: 5
+  m_Name: carSpawn (21)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &225511295
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225511294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -743, y: -239.67}
+  m_SizeDelta: {x: 89.5361, y: 90.626}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &273331568
 GameObject:
@@ -585,6 +795,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299613581}
   m_CullTransparentMesh: 1
+--- !u!1 &316723985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 316723986}
+  m_Layer: 5
+  m_Name: carSpawn (23)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &316723986
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316723985}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7074891, w: 0.7067243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -565, y: -381}
+  m_SizeDelta: {x: 62.3374, y: 122.0709}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &350995009
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +1019,41 @@ RectTransform:
   m_AnchoredPosition: {x: 546, y: 482}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &387406059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 387406060}
+  m_Layer: 5
+  m_Name: carSpawn (28)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &387406060
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387406059}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7074891, w: 0.7067243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 90.95403, y: -378.49963}
+  m_SizeDelta: {x: 39.6379, y: 112.6427}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &442269269
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,8 +1086,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -886.26843, y: -206.5}
-  m_SizeDelta: {x: 89.5361, y: 413}
+  m_AnchoredPosition: {x: -886.26843, y: -45.925976}
+  m_SizeDelta: {x: 89.5361, y: 91.853}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &444267431
 GameObject:
@@ -1066,6 +1346,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461718035}
   m_CullTransparentMesh: 1
+--- !u!1 &464423274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 464423275}
+  m_Layer: 5
+  m_Name: carSpawn (30)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &464423275
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464423274}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7074891, w: 0.7067243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 377, y: -377}
+  m_SizeDelta: {x: 45.629, y: 112.6427}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &497009596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,7 +1623,8 @@ MonoBehaviour:
   maxZoom: 300
   minZoom: 150
   panSpeed: 6
-  cam: {fileID: 519420031}
+  zoomStep: 50
+  zoomSmooth: 5
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1555,6 +1871,41 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 167.97626, y: 189.48813}
   m_SizeDelta: {x: 186.7614, y: 112.9879}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &706973347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 706973348}
+  m_Layer: 5
+  m_Name: carSpawn (22)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &706973348
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706973347}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -743, y: -310.84}
+  m_SizeDelta: {x: 89.5361, y: 81.8483}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &712270182
 GameObject:
@@ -1850,8 +2201,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.2517, y: -382.464}
-  m_SizeDelta: {x: 62.3374, y: 1549.5647}
+  m_AnchoredPosition: {x: -711.49475, y: -383.23596}
+  m_SizeDelta: {x: 62.3374, y: 122.0709}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &903882965
 GameObject:
@@ -2805,22 +3156,48 @@ RectTransform:
   - {fileID: 1458429791}
   - {fileID: 1495355775}
   - {fileID: 442269270}
+  - {fileID: 1108114167}
+  - {fileID: 1204019080}
+  - {fileID: 1906508167}
+  - {fileID: 1699688038}
+  - {fileID: 225511295}
+  - {fileID: 706973348}
   - {fileID: 883472764}
+  - {fileID: 316723986}
+  - {fileID: 1767909068}
+  - {fileID: 1354692961}
   - {fileID: 130839833}
   - {fileID: 299280736}
   - {fileID: 369564577}
   - {fileID: 1339003650}
   - {fileID: 2069740096}
+  - {fileID: 1465771227}
   - {fileID: 102772442}
   - {fileID: 1125339209}
+  - {fileID: 2048928630}
+  - {fileID: 66540063}
+  - {fileID: 1820156707}
   - {fileID: 903882966}
   - {fileID: 1948333095}
   - {fileID: 1295059172}
+  - {fileID: 387406060}
+  - {fileID: 1528055619}
+  - {fileID: 464423275}
+  - {fileID: 1922117636}
+  - {fileID: 1385421713}
+  - {fileID: 1270966123}
+  - {fileID: 148644171}
   - {fileID: 190819163}
+  - {fileID: 1916420883}
+  - {fileID: 2101124861}
+  - {fileID: 2065107235}
+  - {fileID: 115316864}
+  - {fileID: 30526227}
   - {fileID: 1548986998}
   - {fileID: 1787458672}
   - {fileID: 822004441}
   - {fileID: 1238346016}
+  - {fileID: 163704218}
   - {fileID: 539378662}
   - {fileID: 1733039183}
   - {fileID: 444267432}
@@ -2935,6 +3312,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103684834}
   m_CullTransparentMesh: 1
+--- !u!1 &1108114166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1108114167}
+  m_Layer: 5
+  m_Name: carSpawn (17)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1108114167
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108114166}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -893, y: -154.91356}
+  m_SizeDelta: {x: 89.5361, y: 43.0801}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1125339208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2967,8 +3379,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.758}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 435.15717, y: -147.15895}
-  m_SizeDelta: {x: 134.5648, y: 672.2844}
+  m_AnchoredPosition: {x: 162.67572, y: -146.00648}
+  m_SizeDelta: {x: 134.5648, y: 127.3167}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1137538114
 GameObject:
@@ -3501,6 +3913,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185863584}
   m_CullTransparentMesh: 1
+--- !u!1 &1204019079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1204019080}
+  m_Layer: 5
+  m_Name: carSpawn (18)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1204019080
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204019079}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -893, y: -239.66885}
+  m_SizeDelta: {x: 89.5361, y: 59.3377}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1238346015
 GameObject:
   m_ObjectHideFlags: 0
@@ -3533,8 +3980,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.635}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 891.5626, y: -220.08893}
-  m_SizeDelta: {x: 205.4957, y: 74.9154}
+  m_AnchoredPosition: {x: 891.9324, y: -278.1785}
+  m_SizeDelta: {x: 89.3142, y: 74.9154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1256712018
 GameObject:
@@ -3625,6 +4072,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256712018}
   m_CullTransparentMesh: 1
+--- !u!1 &1270966122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270966123}
+  m_Layer: 5
+  m_Name: carSpawn (26)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1270966123
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270966122}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7074891, w: 0.7067243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -33.974, y: -496.0773}
+  m_SizeDelta: {x: 76.4841, y: 112.6427}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1295059171
 GameObject:
   m_ObjectHideFlags: 0
@@ -3657,8 +4139,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -121.39906, y: -475.30908}
-  m_SizeDelta: {x: 130.2367, y: 280.2489}
+  m_AnchoredPosition: {x: -205.1991, y: -478.19873}
+  m_SizeDelta: {x: 124.6387, y: 112.6427}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1310376409
 GameObject:
@@ -3707,6 +4189,19 @@ MonoBehaviour:
   - {fileID: 2032425967}
   - {fileID: 1759473747}
   - {fileID: 1802647322}
+  dropPlaces:
+  - {fileID: 1834382042}
+  - {fileID: 1319154693}
+  - {fileID: 1071420863}
+  - {fileID: 527768938}
+  - {fileID: 1620505169}
+  - {fileID: 943050070}
+  - {fileID: 1256712019}
+  - {fileID: 1171279543}
+  - {fileID: 273331569}
+  - {fileID: 2032425968}
+  - {fileID: 746916249}
+  - {fileID: 1317436821}
   spawnPoints:
   - {fileID: 442269270}
   - {fileID: 883472764}
@@ -3726,6 +4221,30 @@ MonoBehaviour:
   - {fileID: 822004441}
   - {fileID: 1238346016}
   - {fileID: 539378662}
+  - {fileID: 1108114167}
+  - {fileID: 1204019080}
+  - {fileID: 1906508167}
+  - {fileID: 1699688038}
+  - {fileID: 225511295}
+  - {fileID: 706973348}
+  - {fileID: 316723986}
+  - {fileID: 1354692961}
+  - {fileID: 1270966123}
+  - {fileID: 148644171}
+  - {fileID: 387406060}
+  - {fileID: 1528055619}
+  - {fileID: 464423275}
+  - {fileID: 1922117636}
+  - {fileID: 1385421713}
+  - {fileID: 1916420883}
+  - {fileID: 2101124861}
+  - {fileID: 2065107235}
+  - {fileID: 115316864}
+  - {fileID: 30526227}
+  - {fileID: 163704218}
+  - {fileID: 2048928630}
+  - {fileID: 66540063}
+  - {fileID: 1820156707}
   startCoordinates: []
   can: {fileID: 1086768095}
   effects: {fileID: 1520155635}
@@ -3747,6 +4266,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c70cafc2f87699f4a83f5bda02c9a8f4, type: 3}
   - {fileID: 8300000, guid: c158e252422453544aad3720c9ed3c61, type: 3}
   - {fileID: 8300000, guid: 1c15546f186b53d4f8408f87f928c3d1, type: 3}
+  dropStartCoordinates: []
   rightPlace: 0
   onRightPlaces: 
   winPanel: {fileID: 1733039182}
@@ -4204,6 +4724,76 @@ RectTransform:
   m_AnchoredPosition: {x: -546.0048, y: 232.43063}
   m_SizeDelta: {x: 103.7328, y: 140.4392}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1354692960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1354692961}
+  m_Layer: 5
+  m_Name: carSpawn (25)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1354692961
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354692960}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7074891, w: 0.7067243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -214, y: -387}
+  m_SizeDelta: {x: 62.3374, y: 122.0709}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1385421712
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1385421713}
+  m_Layer: 5
+  m_Name: carSpawn (32)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1385421713
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385421712}
+  m_LocalRotation: {x: -0, y: -0, z: 0.046762798, w: 0.998906}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5.361}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 698, y: -343}
+  m_SizeDelta: {x: 45.629, y: 112.6427}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1458429790
 GameObject:
   m_ObjectHideFlags: 0
@@ -4238,6 +4828,41 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 958, y: 0}
   m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1465771226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1465771227}
+  m_Layer: 5
+  m_Name: carSpawn (42)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1465771227
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465771226}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7048529, w: -0.7093535}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.635}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 130, y: 427}
+  m_SizeDelta: {x: 64.2379, y: 107.7871}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1495355774
 GameObject:
@@ -4466,6 +5091,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1528055618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1528055619}
+  m_Layer: 5
+  m_Name: carSpawn (29)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1528055619
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528055618}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7074891, w: 0.7067243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 218.95728, y: -379.49518}
+  m_SizeDelta: {x: 45.629, y: 112.6427}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1543346308
 GameObject:
   m_ObjectHideFlags: 0
@@ -4772,6 +5432,41 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &1699688037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1699688038}
+  m_Layer: 5
+  m_Name: carSpawn (20)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1699688038
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699688037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -893, y: -374.5}
+  m_SizeDelta: {x: 89.5361, y: 76.995}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1733039182
 GameObject:
   m_ObjectHideFlags: 0
@@ -5024,6 +5719,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1767909067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1767909068}
+  m_Layer: 5
+  m_Name: carSpawn (24)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1767909068
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767909067}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7074891, w: 0.7067243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -407, y: -379}
+  m_SizeDelta: {x: 62.3374, y: 122.0709}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1785753104
 GameObject:
   m_ObjectHideFlags: 0
@@ -5295,6 +6025,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802647322}
   m_CullTransparentMesh: 1
+--- !u!1 &1820156706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1820156707}
+  m_Layer: 5
+  m_Name: carSpawn (41)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1820156707
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820156706}
+  m_LocalRotation: {x: -0, y: -0, z: 0.70560986, w: 0.7086006}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.758}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 626, y: -141}
+  m_SizeDelta: {x: 134.5648, y: 127.3167}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1834382041
 GameObject:
   m_ObjectHideFlags: 0
@@ -5384,6 +6149,111 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834382041}
   m_CullTransparentMesh: 1
+--- !u!1 &1906508166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1906508167}
+  m_Layer: 5
+  m_Name: carSpawn (19)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1906508167
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906508166}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -893, y: -306.46698}
+  m_SizeDelta: {x: 89.5361, y: 73.0942}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1916420882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1916420883}
+  m_Layer: 5
+  m_Name: carSpawn (33)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1916420883
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916420882}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7074891, w: 0.7067243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 402, y: -481}
+  m_SizeDelta: {x: 109.9344, y: 73.6813}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1922117635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922117636}
+  m_Layer: 5
+  m_Name: carSpawn (31)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1922117636
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922117635}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7074891, w: 0.7067243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 536, y: -381}
+  m_SizeDelta: {x: 45.629, y: 112.6427}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1944436076
 GameObject:
   m_ObjectHideFlags: 0
@@ -5601,6 +6471,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032425967}
   m_CullTransparentMesh: 1
+--- !u!1 &2048928629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2048928630}
+  m_Layer: 5
+  m_Name: carSpawn (39)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2048928630
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048928629}
+  m_LocalRotation: {x: -0, y: -0, z: 0.70560986, w: 0.7086006}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.758}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 329, y: -150}
+  m_SizeDelta: {x: 134.5648, y: 127.3167}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2065107234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2065107235}
+  m_Layer: 5
+  m_Name: carSpawn (35)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2065107235
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065107234}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7074891, w: 0.7067243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 679, y: -478}
+  m_SizeDelta: {x: 109.9344, y: 73.6813}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2069740095
 GameObject:
   m_ObjectHideFlags: 0
@@ -5633,8 +6573,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.635}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.8866, y: 466.1765}
-  m_SizeDelta: {x: 139.3805, y: 140.4392}
+  m_AnchoredPosition: {x: -19.0148, y: 428.5941}
+  m_SizeDelta: {x: 64.2379, y: 107.7871}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2092453281
 GameObject:
@@ -5818,6 +6758,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097437951}
   m_CullTransparentMesh: 1
+--- !u!1 &2101124860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2101124861}
+  m_Layer: 5
+  m_Name: carSpawn (34)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2101124861
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101124860}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7074891, w: 0.7067243}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1086768096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.062}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 498, y: -476}
+  m_SizeDelta: {x: 109.9344, y: 73.6813}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
