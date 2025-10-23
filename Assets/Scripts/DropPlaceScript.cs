@@ -8,18 +8,23 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler
     private float xSizeDiff, ySizeDiff;
     public ObjectScript objScript;
 
+    void Start()
+    {
+        if(objScript == null)
+        {
+            objScript = Object.FindFirstObjectByType<ObjectScript>();
+        }
+    }
+
     public void OnDrop(PointerEventData eventData)
     {
-        if ((eventData.pointerDrag != null) &&
-            Input.GetMouseButtonUp(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2))
-        {
+        if (eventData.pointerDrag != null) return;
+
             if (eventData.pointerDrag.tag.Equals(tag))
             {
-                placeZRot =
-                     eventData.pointerDrag.GetComponent<RectTransform>().transform.eulerAngles.z;
+                placeZRot = eventData.pointerDrag.GetComponent<RectTransform>().transform.eulerAngles.z;
 
-                vehicleZRot =
-                    GetComponent<RectTransform>().transform.eulerAngles.z;
+                vehicleZRot = GetComponent<RectTransform>().transform.eulerAngles.z;
 
                 rotDiff = Mathf.Abs(placeZRot - vehicleZRot);
                 Debug.Log("Rotation difference: " + rotDiff);
@@ -208,4 +213,3 @@ public class DropPlaceScript : MonoBehaviour, IDropHandler
             }
         }
     }
-}
