@@ -1,26 +1,83 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CameraScript : MonoBehaviour
+public class CameraScriptMobile : MonoBehaviour
 {
     public float maxZoom = 300f;
     public float minZoom = 150f;
-    public float panSpeed = 6f;
-    public float zoomStep = 50f;
+    public float panSpeed = 0.1f;
+    public float zoomSpeed = 0.5f;
     public float zoomSmooth = 5f;
+
     private Camera cam;
-    private float startZoom;
     private float targetZoom;
 
-    private float x, y;
+    private Vector2 lastPanPosition;
+    private int panFingerId; // для отслеживания первого пальца
+    private bool isPanning;
+    private float lastPinchDistance;
+
     private Vector3 bottomLeft, topRight;
     private float cameraMaxX, cameraMinX, cameraMaxY, cameraMinY;
 
     void Start()
     {
         cam = GetComponent<Camera>();
-        startZoom = cam.orthographicSize;
-        targetZoom = startZoom;
+        targetZoom = cam.orthographicSize;
 
+        UpdateCameraBounds();
+    }
+
+    void Update()
+    {
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                lastPanPosition = touch.position;
+                panFingerId = touch.fingerId;
+                isPanning = true;
+            }
+            else if (touch.phase == TouchPhase.Moved && isPanning && touch.fingerId == panFingerId)
+            {
+                Vector2 delta = touch.position - lastPanPosition;
+                Vector3 move = new Vector3(-delta.x * panSpeed, -delta.y * panSpeed, 0);
+                transform.Translate(move * Time.deltaTime);
+
+                lastPanPosition = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+            {
+                isPanning = false;
+            }
+        }
+        else if (Input.touchCount == 2)
+        {
+            Touch touch0 = Input.GetTouch(0);
+            Touch touch1 = Input.GetTouch(1);
+
+            Vector2 touch0Prev = touch0.position - touch0.deltaPosition;
+            Vector2 touch1Prev = touch1.position - touch1.deltaPosition;
+
+            float prevDistance = Vector2.Distance(touch0Prev, touch1Prev);
+            float currentDistance = Vector2.Distance(touch0.position, touch1.position);
+
+            float deltaDistance = prevDistance - currentDistance;
+
+            targetZoom += deltaDistance * zoomSpeed * Time.deltaTime;
+            targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
+        }
+
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomSmooth);
+
+        // Ограничение камеры по краям
+        UpdateCameraBounds();
+        ClampCameraPosition();
+    }
+
+    void UpdateCameraBounds()
+    {
         topRight = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, cam.pixelHeight, -transform.position.z));
         bottomLeft = cam.ScreenToWorldPoint(new Vector3(0, 0, -transform.position.z));
         cameraMaxX = topRight.x;
@@ -29,47 +86,18 @@ public class CameraScript : MonoBehaviour
         cameraMinY = bottomLeft.y;
     }
 
-    void Update()
+    void ClampCameraPosition()
     {
-        x = Input.GetAxis("Mouse X") * panSpeed;
-        y = Input.GetAxis("Mouse Y") * panSpeed;
-        transform.Translate(x, y, 0);
-
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (Mathf.Abs(scroll) > 0.001f)
-        {
-            Vector3 mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
-            float oldSize = cam.orthographicSize;
-
-            if (scroll > 0 && targetZoom > minZoom)
-                targetZoom -= zoomStep;
-            else if (scroll < 0)
-            {
-                if (targetZoom < startZoom)
-                    targetZoom = Mathf.Min(targetZoom + zoomStep, startZoom);
-                else if (targetZoom < maxZoom)
-                    targetZoom += zoomStep;
-            }
-
-            cam.orthographicSize = targetZoom;
-
-            Vector3 newMouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 offset = mouseWorldPos - newMouseWorldPos;
-            transform.position += new Vector3(offset.x, offset.y, 0);
-        }
-
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomSmooth);
-
-        topRight = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, cam.pixelHeight, -transform.position.z));
-        bottomLeft = cam.ScreenToWorldPoint(new Vector3(0, 0, -transform.position.z));
-
+        Vector3 pos = transform.position;
         if (topRight.x > cameraMaxX)
-            transform.position = new Vector3(transform.position.x - (topRight.x - cameraMaxX), transform.position.y, transform.position.z);
+            pos.x -= (topRight.x - cameraMaxX);
         if (topRight.y > cameraMaxY)
-            transform.position = new Vector3(transform.position.x, transform.position.y - (topRight.y - cameraMaxY), transform.position.z);
+            pos.y -= (topRight.y - cameraMaxY);
         if (bottomLeft.x < cameraMinX)
-            transform.position = new Vector3(transform.position.x + (cameraMinX - bottomLeft.x), transform.position.y, transform.position.z);
+            pos.x += (cameraMinX - bottomLeft.x);
         if (bottomLeft.y < cameraMinY)
-            transform.position = new Vector3(transform.position.x, transform.position.y + (cameraMinY - bottomLeft.y), transform.position.z);
+            pos.y += (cameraMinY - bottomLeft.y);
+
+        transform.position = pos;
     }
 }
