@@ -1,9 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ObjectScriptMobile : MonoBehaviour
+public class ObjectScript : MonoBehaviour
 {
     public GameObject[] vehicles;
     public Transform[] dropPlaces;
@@ -96,6 +96,14 @@ public class ObjectScriptMobile : MonoBehaviour
         timerRunning = false;
         gameEnded = true;
 
+        Camera camScriptCamera = Camera.main;
+        if (camScriptCamera != null)
+        {
+            CameraScript camScript = camScriptCamera.GetComponent<CameraScript>();
+            if (camScript != null)
+                camScript.MoveToCenterSmooth(0.7f, true);
+        } 
+
         if (winPanel != null) winPanel.SetActive(true);
         if (effects != null && audioCli.Length > 10) effects.PlayOneShot(audioCli[16]);
 
@@ -132,12 +140,13 @@ public class ObjectScriptMobile : MonoBehaviour
             }
         }
 
-        FlyingObjectsScriptMobile[] flyingObjects = FindObjectsOfType<FlyingObjectsScriptMobile>();
+        FlyingObjectsScript[] flyingObjects = FindObjectsOfType<FlyingObjectsScript>();
         foreach (var obj in flyingObjects)
         {
             Destroy(obj.gameObject);
         }
     }
+
 
     public void VehicleDestroyed(GameObject vehicle)
     {
@@ -145,15 +154,23 @@ public class ObjectScriptMobile : MonoBehaviour
 
         timerRunning = false;
         gameEnded = true;
-        Debug.Log("Game Over � vehicle destroyed");
+        Debug.Log("Game Over — vehicle destroyed");
         effects.PlayOneShot(audioCli[0]);
+        Camera camScriptCamera = Camera.main;
+        if (camScriptCamera != null)
+        {
+            CameraScript camScript = camScriptCamera.GetComponent<CameraScript>();
+            if (camScript != null)
+                camScript.MoveToCenterSmooth(0.7f, true);
+        }
         losePanel.SetActive(true);
+
         foreach (var v in vehicles)
         {
             v.SetActive(false);
         }
 
-        FlyingObjectsScriptMobile[] flyingObjects = FindObjectsOfType<FlyingObjectsScriptMobile>();
+        FlyingObjectsScript[] flyingObjects = FindObjectsOfType<FlyingObjectsScript>();
         foreach (var obj in flyingObjects)
         {
             Destroy(obj.gameObject);

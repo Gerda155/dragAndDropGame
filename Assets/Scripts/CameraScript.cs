@@ -1,103 +1,189 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CameraScriptMobile : MonoBehaviour
+// CHANGES FOR ANDROID + center-on-end
+public class CameraScript : MonoBehaviour
 {
-    public float maxZoom = 300f;
-    public float minZoom = 150f;
-    public float panSpeed = 0.1f;
-    public float zoomSpeed = 0.5f;
-    public float zoomSmooth = 5f;
+    public float maxZoom = 530f, minZoom = 150f;
+    public float puncZoomSpeed = 0.9f, mouseZoomSpeed = 150f;
+    public float mouseFollowSpeed = 1f, touchPanSpeed = 1f;
+    public ScreenBoundriesScript screenBoundries;
+    public Camera cam;
+    public float centerMoveDuration = 0.6f; // длительность перемещения камеры в центр
 
-    private Camera cam;
-    private float targetZoom;
+    [HideInInspector] public float startZoom;
 
-    private Vector2 lastPanPosition;
-    private int panFingerId; // для отслеживания первого пальца
-    private bool isPanning;
-    private float lastPinchDistance;
+    Vector2 lastTouchPos;
+    int panFingerId = -1;
+    bool isTouchPanning = false;
 
-    private Vector3 bottomLeft, topRight;
-    private float cameraMaxX, cameraMinX, cameraMaxY, cameraMinY;
+    float lastTapTime = 0f;
+    public float doubleTapMaxDelay = 0.4f;
+    public float doubleTapMaxDistance = 100f;
+
+    private Coroutine centerCoroutine = null;
+
+    private void Awake()
+    {
+        if (cam == null) cam = GetComponent<Camera>();
+        if (screenBoundries == null) screenBoundries = FindObjectOfType<ScreenBoundriesScript>();
+    }
 
     void Start()
     {
-        cam = GetComponent<Camera>();
-        targetZoom = cam.orthographicSize;
-
-        UpdateCameraBounds();
+        startZoom = cam.orthographicSize;
+        if (screenBoundries != null) screenBoundries.RecalculateBounds();
+        transform.position = (screenBoundries != null) ? screenBoundries.GetClampedCameraPosition(transform.position) : transform.position;
     }
 
     void Update()
     {
-        if (Input.touchCount == 1)
+        // если трансформация (редактирование) происходить — камера не трогается
+        if (TransformationScript.isTransforming)
+            return;
+
+#if UNITY_EDITOR || UNITY_STANDALONE
+        DesktopFollowCursor();
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (Mathf.Abs(scroll) > Mathf.Epsilon)
+            cam.orthographicSize -= scroll * mouseZoomSpeed;
+#else
+        HandleTouch();
+#endif
+
+        if (Input.touchCount == 2)
+            HandlePinch();
+
+        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
+
+        if (screenBoundries != null)
         {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
-            {
-                lastPanPosition = touch.position;
-                panFingerId = touch.fingerId;
-                isPanning = true;
-            }
-            else if (touch.phase == TouchPhase.Moved && isPanning && touch.fingerId == panFingerId)
-            {
-                Vector2 delta = touch.position - lastPanPosition;
-                Vector3 move = new Vector3(-delta.x * panSpeed, -delta.y * panSpeed, 0);
-                transform.Translate(move * Time.deltaTime);
-
-                lastPanPosition = touch.position;
-            }
-            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-            {
-                isPanning = false;
-            }
+            screenBoundries.RecalculateBounds();
+            transform.position = screenBoundries.GetClampedCameraPosition(transform.position);
         }
-        else if (Input.touchCount == 2)
-        {
-            Touch touch0 = Input.GetTouch(0);
-            Touch touch1 = Input.GetTouch(1);
-
-            Vector2 touch0Prev = touch0.position - touch0.deltaPosition;
-            Vector2 touch1Prev = touch1.position - touch1.deltaPosition;
-
-            float prevDistance = Vector2.Distance(touch0Prev, touch1Prev);
-            float currentDistance = Vector2.Distance(touch0.position, touch1.position);
-
-            float deltaDistance = prevDistance - currentDistance;
-
-            targetZoom += deltaDistance * zoomSpeed * Time.deltaTime;
-            targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
-        }
-
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomSmooth);
-
-        // Ограничение камеры по краям
-        UpdateCameraBounds();
-        ClampCameraPosition();
     }
 
-    void UpdateCameraBounds()
+    void DesktopFollowCursor()
     {
-        topRight = cam.ScreenToWorldPoint(new Vector3(cam.pixelWidth, cam.pixelHeight, -transform.position.z));
-        bottomLeft = cam.ScreenToWorldPoint(new Vector3(0, 0, -transform.position.z));
-        cameraMaxX = topRight.x;
-        cameraMinX = bottomLeft.x;
-        cameraMaxY = topRight.y;
-        cameraMinY = bottomLeft.y;
+        Vector3 mouse = Input.mousePosition;
+        if (mouse.x < 0 || mouse.x > Screen.width || mouse.y < 0 || mouse.y > Screen.height)
+            return;
+
+        Vector3 screenPoint = new Vector3(mouse.x, mouse.y, cam.nearClipPlane);
+        Vector3 targetWorld = cam.ScreenToWorldPoint(screenPoint);
+        Vector3 desired = new Vector3(targetWorld.x, targetWorld.y, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, desired, mouseFollowSpeed * Time.deltaTime);
     }
 
-    void ClampCameraPosition()
+    void HandleTouch()
     {
-        Vector3 pos = transform.position;
-        if (topRight.x > cameraMaxX)
-            pos.x -= (topRight.x - cameraMaxX);
-        if (topRight.y > cameraMaxY)
-            pos.y -= (topRight.y - cameraMaxY);
-        if (bottomLeft.x < cameraMinX)
-            pos.x += (cameraMinX - bottomLeft.x);
-        if (bottomLeft.y < cameraMinY)
-            pos.y += (cameraMinY - bottomLeft.y);
+        if (Input.touchCount != 1) return;
 
-        transform.position = pos;
+        Touch t = Input.GetTouch(0);
+
+        if (IsTouchingUIButton(t.position)) return;
+
+        if (t.phase == TouchPhase.Began)
+        {
+            float dt = Time.time - lastTapTime;
+            if (dt <= doubleTapMaxDelay && Vector2.Distance(t.position, lastTouchPos) <= doubleTapMaxDistance)
+            {
+                // двойной тап — плавный сброс зума и центрирование
+                MoveToCenterSmooth(centerMoveDuration, true);
+                lastTapTime = 0f;
+            }
+            else
+            {
+                lastTapTime = Time.time;
+            }
+
+            lastTouchPos = t.position;
+            panFingerId = t.fingerId;
+            isTouchPanning = true;
+        }
+        else if (t.phase == TouchPhase.Moved && isTouchPanning && t.fingerId == panFingerId)
+        {
+            Vector2 delta = t.position - lastTouchPos;
+            transform.Translate(ScreenDeltaToWorldDelta(delta) * touchPanSpeed, Space.World);
+            lastTouchPos = t.position;
+        }
+        else if (t.phase == TouchPhase.Ended || t.phase == TouchPhase.Canceled)
+        {
+            isTouchPanning = false;
+            panFingerId = -1;
+        }
+    }
+
+    bool IsTouchingUIButton(Vector2 touchPos)
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current) { position = touchPos };
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+        foreach (RaycastResult result in results)
+            if (result.gameObject.GetComponent<UnityEngine.UI.Button>() != null)
+                return true;
+        return false;
+    }
+
+    void HandlePinch()
+    {
+        Touch t0 = Input.GetTouch(0);
+        Touch t1 = Input.GetTouch(1);
+
+        float prevDist = (t0.position - t0.deltaPosition - (t1.position - t1.deltaPosition)).magnitude;
+        float currDist = (t0.position - t1.position).magnitude;
+        cam.orthographicSize -= (currDist - prevDist) * puncZoomSpeed;
+    }
+
+    Vector3 ScreenDeltaToWorldDelta(Vector2 delta)
+    {
+        float worldPerPixel = (cam.orthographicSize * 2f) / Screen.height;
+        return new Vector3(delta.x * worldPerPixel, delta.y * worldPerPixel, 0f);
+    }
+
+    // публичный вызов — плавно переместить камеру в центр игровой области
+    public void MoveToCenterSmooth(float duration = 0.6f, bool resetZoomToStart = true)
+    {
+        if (centerCoroutine != null) StopCoroutine(centerCoroutine);
+        centerCoroutine = StartCoroutine(MoveToCenterCoroutine(duration, resetZoomToStart));
+    }
+
+    private IEnumerator MoveToCenterCoroutine(float duration, bool resetZoom)
+    {
+        if (screenBoundries == null)
+            yield break;
+
+        // цель — центр области (усреднение min/max)
+        Vector3 centerPos = new Vector3(
+            (screenBoundries.minX + screenBoundries.maxX) * 0.5f,
+            (screenBoundries.minY + screenBoundries.maxY) * 0.5f,
+            transform.position.z);
+
+        // перед началом убедимся, что centerPos соответствует ограниченной позиции камеры
+        Vector3 targetPos = screenBoundries.GetClampedCameraPosition(centerPos);
+
+        float elapsed = 0f;
+        Vector3 initialPos = transform.position;
+        float initialZoom = cam.orthographicSize;
+        float targetZoom = resetZoom ? startZoom : initialZoom;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+            transform.position = Vector3.Lerp(initialPos, targetPos, t);
+            cam.orthographicSize = Mathf.Lerp(initialZoom, targetZoom, t);
+
+            screenBoundries.RecalculateBounds();
+            yield return null;
+        }
+
+        transform.position = targetPos;
+        cam.orthographicSize = targetZoom;
+        screenBoundries.RecalculateBounds();
+        transform.position = screenBoundries.GetClampedCameraPosition(transform.position);
+        centerCoroutine = null;
     }
 }

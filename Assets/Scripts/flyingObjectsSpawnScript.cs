@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FlyingObjectsSpawnScriptMobile : MonoBehaviour
+public class FlyingObjectsSpawnScript : MonoBehaviour
 {
     private ScreenBoundriesScript screenBoundriesScript;
     public GameObject[] cloudsPrefabs;
@@ -38,7 +38,7 @@ public class FlyingObjectsSpawnScriptMobile : MonoBehaviour
         cloud.transform.SetAsLastSibling();
 
         float movementSpeed = Random.Range(cloudMinSpeed, cloudMaxSpeed);
-        var controller = cloud.GetComponent<FlyingObjectsScriptMobile>();
+        var controller = cloud.GetComponent<FlyingObjectsScript>();
         if (controller != null)
             controller.speed = movementSpeed;
     }
@@ -55,7 +55,7 @@ public class FlyingObjectsSpawnScriptMobile : MonoBehaviour
         flyObject.transform.SetAsLastSibling();
 
         float movementSpeed = Random.Range(objectMinSpeed, objectMaxSpeed);
-        var controller = flyObject.GetComponent<FlyingObjectsScriptMobile>();
+        var controller = flyObject.GetComponent<FlyingObjectsScript>();
         if (controller != null)
             controller.speed = -movementSpeed;
     }

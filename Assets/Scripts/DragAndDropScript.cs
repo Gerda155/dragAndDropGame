@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragAndDropScriptMobile : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
+public class DragAndDropScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     IDragHandler, IEndDragHandler
 {
     private CanvasGroup canvasGro;

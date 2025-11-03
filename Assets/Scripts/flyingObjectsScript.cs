@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FlyingObjectsScriptMobile : MonoBehaviour
+public class FlyingObjectsScript : MonoBehaviour
 {
     [HideInInspector] public float speed = 1f;
     public float fadeDuration = 1.5f;
@@ -118,7 +118,7 @@ public class FlyingObjectsScriptMobile : MonoBehaviour
         {
             if (hitCollider != null && hitCollider.gameObject != gameObject)
             {
-                FlyingObjectsScriptMobile obj = hitCollider.gameObject.GetComponent<FlyingObjectsScriptMobile>();
+                FlyingObjectsScript obj = hitCollider.gameObject.GetComponent<FlyingObjectsScript>();
                 if (obj != null && !obj.isExploding)
                     obj.StartToDestroy();
             }

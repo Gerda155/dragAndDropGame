@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DropPlaceScriptMobile : MonoBehaviour, IDropHandler
+public class DropPlaceScript : MonoBehaviour, IDropHandler
 {
     private float placeZRot, vehicleZRot, rotDiff;
     private Vector3 placeSiz, vehicleSiz;
