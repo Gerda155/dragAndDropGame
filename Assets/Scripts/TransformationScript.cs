@@ -28,7 +28,7 @@ public class TransformationScript : MonoBehaviour
             rt.Rotate(0, 0, rotationSpeed * Time.deltaTime);
         }
 
-        if (scaleUpY && rt.localScale.y < 0.9f)
+        if (scaleUpY && rt.localScale.y < 1.1f)
         {
             rt.localScale += new Vector3(0, scaleSpeed * Time.deltaTime, 0);
         }
@@ -38,7 +38,7 @@ public class TransformationScript : MonoBehaviour
             rt.localScale -= new Vector3(0, scaleSpeed * Time.deltaTime, 0);
         }
 
-        if (scalUpX && rt.localScale.x < 0.9f)
+        if (scalUpX && rt.localScale.x < 1.1f)
         {
             rt.localScale += new Vector3(scaleSpeed * Time.deltaTime, 0, 0);
         }
