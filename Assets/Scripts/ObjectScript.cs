@@ -29,11 +29,16 @@ public class ObjectScript : MonoBehaviour
     void Awake()
     {
         startCoordinates = new Vector2[vehicles.Length];
+
         Transform[] availablePoints = spawnPoints.Clone() as Transform[];
 
         for (int i = 0; i < vehicles.Length; i++)
         {
-            if (availablePoints.Length == 0) break;
+            if (availablePoints.Length == 0)
+            {
+                Debug.LogWarning("Nav brivas vietas!");
+                break;
+            }
 
             int randomIndex = Random.Range(0, availablePoints.Length);
             Transform point = availablePoints[randomIndex];
@@ -56,7 +61,11 @@ public class ObjectScript : MonoBehaviour
 
         for (int i = 0; i < dropPlaces.Length; i++)
         {
-            if (availableDropPoints.Length == 0) break;
+            if (availableDropPoints.Length == 0)
+            {
+                Debug.LogWarning("Nav brivas vietas drop laukiem!");
+                break;
+            }
 
             int randomIndex = Random.Range(0, availableDropPoints.Length);
             Transform point = availableDropPoints[randomIndex];
@@ -67,6 +76,7 @@ public class ObjectScript : MonoBehaviour
             availableDropPoints = RemoveAt(availableDropPoints, randomIndex);
         }
     }
+
 
     void Start()
     {
@@ -83,26 +93,20 @@ public class ObjectScript : MonoBehaviour
         if (timerRunning && !gameEnded)
             gameTime += Time.deltaTime;
     }
-
     public void CheckWin()
     {
         if (gameEnded) return;
 
         for (int i = 0; i < onRightPlaces.Length; i++)
         {
-            if (!onRightPlaces[i]) return;
+            if (!onRightPlaces[i])
+                return;
         }
 
         timerRunning = false;
         gameEnded = true;
 
-        Camera camScriptCamera = Camera.main;
-        if (camScriptCamera != null)
-        {
-            CameraScript camScript = camScriptCamera.GetComponent<CameraScript>();
-            if (camScript != null)
-                camScript.MoveToCenterSmooth(0.7f, true);
-        } 
+        FindObjectOfType<CameraScript>().MoveToCenterAndZoomOut();
 
         if (winPanel != null) winPanel.SetActive(true);
         if (effects != null && audioCli.Length > 10) effects.PlayOneShot(audioCli[16]);
@@ -110,12 +114,20 @@ public class ObjectScript : MonoBehaviour
         int hours = Mathf.FloorToInt(gameTime / 3600);
         int minutes = Mathf.FloorToInt((gameTime % 3600) / 60);
         int seconds = Mathf.FloorToInt(gameTime % 60);
-        string timeStr = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
 
-        if (timeText != null) timeText.text = timeStr;
+        string timeStr = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
+        if (timeText != null)
+            timeText.text = timeStr;
+
         Debug.Log($"Spele pavaditais laiks: {timeStr}");
 
-        int earnedStars = (gameTime < 120f) ? 3 : (gameTime < 180f) ? 2 : 1;
+        int earnedStars = 1;
+        float secondsElapsed = Mathf.Floor(gameTime);
+
+        if (secondsElapsed < 120f) earnedStars = 3;
+        else if (secondsElapsed < 180f) earnedStars = 2;
+        else earnedStars = 1;
+
         Debug.Log($"Iegutas zvaigznes: {earnedStars}");
 
         if (starsParent != null)
@@ -128,6 +140,7 @@ public class ObjectScript : MonoBehaviour
         {
             float spacing = 100f;
             Vector3 startPos = starsParent.localPosition - new Vector3(spacing * (earnedStars - 1) / 2f, 0f, 0f);
+
             for (int i = 0; i < earnedStars; i++)
             {
                 if (i >= stars.Length) break;
@@ -140,13 +153,12 @@ public class ObjectScript : MonoBehaviour
             }
         }
 
-       flyingObjectsScript[] flyingObjects = FindObjectsOfType<flyingObjectsScript>();
+        flyingObjectsScript[] flyingObjects = FindObjectsOfType<flyingObjectsScript>();
         foreach (var obj in flyingObjects)
         {
             Destroy(obj.gameObject);
         }
     }
-
 
     public void VehicleDestroyed(GameObject vehicle)
     {
@@ -154,17 +166,10 @@ public class ObjectScript : MonoBehaviour
 
         timerRunning = false;
         gameEnded = true;
-        Debug.Log("Game Over — vehicle destroyed");
+        Debug.Log("Game Over � vehicle destroyed");
         effects.PlayOneShot(audioCli[0]);
-        Camera camScriptCamera = Camera.main;
-        if (camScriptCamera != null)
-        {
-            CameraScript camScript = camScriptCamera.GetComponent<CameraScript>();
-            if (camScript != null)
-                camScript.MoveToCenterSmooth(0.7f, true);
-        }
+        FindObjectOfType<CameraScript>().MoveToCenterAndZoomOut();
         losePanel.SetActive(true);
-
         foreach (var v in vehicles)
         {
             v.SetActive(false);
@@ -188,8 +193,15 @@ public class ObjectScript : MonoBehaviour
         return newArray;
     }
 
-    public void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    public void BackToMenu() => SceneManager.LoadScene("StartScene");
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
 
     IEnumerator AnimateStar(Transform star)
     {
@@ -203,4 +215,5 @@ public class ObjectScript : MonoBehaviour
         }
         star.localScale = Vector3.one;
     }
+
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// CHANGES FOR ANDROID + center-on-end
 public class CameraScript : MonoBehaviour
 {
     public float minZoom = 150f;
@@ -12,7 +11,7 @@ public class CameraScript : MonoBehaviour
     public float mouseFollowSpeed = 1f, touchPanSpeed = 1f;
     public ScreenBoundriesScript screenBoundries;
     public Camera cam;
-    public float centerMoveDuration = 0.6f; // длительность перемещения камеры в центр
+    public float centerMoveDuration = 0.6f;
 
     [HideInInspector] public float startZoom;
 
@@ -36,12 +35,13 @@ public class CameraScript : MonoBehaviour
     {
         startZoom = cam.orthographicSize;
         if (screenBoundries != null) screenBoundries.RecalculateBounds();
-        transform.position = (screenBoundries != null) ? screenBoundries.GetClampedCameraPosition(transform.position) : transform.position;
+        transform.position = (screenBoundries != null)
+            ? screenBoundries.GetClampedCameraPosition(transform.position)
+            : transform.position;
     }
 
     void Update()
     {
-        // если трансформация (редактирование) происходить — камера не трогается
         if (TransformationScript.isTransforming)
             return;
 
@@ -93,7 +93,6 @@ public class CameraScript : MonoBehaviour
             float dt = Time.time - lastTapTime;
             if (dt <= doubleTapMaxDelay && Vector2.Distance(t.position, lastTouchPos) <= doubleTapMaxDistance)
             {
-                // двойной тап — плавный сброс зума и центрирование
                 MoveToCenterSmooth(centerMoveDuration, true);
                 lastTapTime = 0f;
             }
@@ -146,29 +145,6 @@ public class CameraScript : MonoBehaviour
         return new Vector3(delta.x * worldPerPixel, delta.y * worldPerPixel, 0f);
     }
 
-    IEnumerator ResetZoomSmooth()
-    {
-        float duration = 0.25f;
-        float elapsed = 0f;
-        float initialZoom = cam.orthographicSize;
-
-        float targetZoom = maxZoom;
-
-        while (elapsed < duration)
-        {
-            // Remember to hange for slowmotion
-            elapsed += Time.deltaTime;
-
-            cam.orthographicSize = Mathf.Lerp(initialZoom, targetZoom, elapsed / duration);
-            screenBoundries.RecalculateBounds();
-            transform.position = screenBoundries.GetClampedCameraPosition(transform.position);
-            yield return null;
-        }
-        cam.orthographicSize = startZoom;
-        screenBoundries.RecalculateBounds();
-        transform.position = screenBoundries.GetClampedCameraPosition(transform.position);
-    }
-
     void UpdateMaxZoom()
     {
         if (screenBoundries == null || cam == null)
@@ -177,12 +153,11 @@ public class CameraScript : MonoBehaviour
         Rect wb = screenBoundries.worldBounds;
         float maxZoomHeight = wb.height / 2f;
         float maxZoomWidth = (wb.height / 2f) / cam.aspect;
-
         maxZoom = Mathf.Min(maxZoomHeight, maxZoomWidth);
     }
 
-// публичный вызов — плавно переместить камеру в центр игровой области
-public void MoveToCenterSmooth(float duration = 0.6f, bool resetZoomToStart = true)
+    // плавное центрирование камеры
+    public void MoveToCenterSmooth(float duration = 0.6f, bool resetZoomToStart = true)
     {
         if (centerCoroutine != null) StopCoroutine(centerCoroutine);
         centerCoroutine = StartCoroutine(MoveToCenterCoroutine(duration, resetZoomToStart));
@@ -193,13 +168,11 @@ public void MoveToCenterSmooth(float duration = 0.6f, bool resetZoomToStart = tr
         if (screenBoundries == null)
             yield break;
 
-        // цель — центр области (усреднение min/max)
         Vector3 centerPos = new Vector3(
             (screenBoundries.minX + screenBoundries.maxX) * 0.5f,
             (screenBoundries.minY + screenBoundries.maxY) * 0.5f,
             transform.position.z);
 
-        // перед началом убедимся, что centerPos соответствует ограниченной позиции камеры
         Vector3 targetPos = screenBoundries.GetClampedCameraPosition(centerPos);
 
         float elapsed = 0f;
@@ -213,15 +186,46 @@ public void MoveToCenterSmooth(float duration = 0.6f, bool resetZoomToStart = tr
             float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
             transform.position = Vector3.Lerp(initialPos, targetPos, t);
             cam.orthographicSize = Mathf.Lerp(initialZoom, targetZoom, t);
-
-            screenBoundries.RecalculateBounds();
             yield return null;
         }
 
         transform.position = targetPos;
         cam.orthographicSize = targetZoom;
-        screenBoundries.RecalculateBounds();
-        transform.position = screenBoundries.GetClampedCameraPosition(transform.position);
+        centerCoroutine = null;
+    }
+
+    // ⚡ метод для проигрыша — камера отдаляется и центрируется
+    public void MoveToCenterAndZoomOut(float duration = 1.2f)
+    {
+        if (centerCoroutine != null) StopCoroutine(centerCoroutine);
+        centerCoroutine = StartCoroutine(MoveToCenterAndZoomOutCoroutine(duration));
+    }
+
+    private IEnumerator MoveToCenterAndZoomOutCoroutine(float duration)
+    {
+        if (screenBoundries == null) yield break;
+
+        Vector3 centerPos = new Vector3(
+            (screenBoundries.minX + screenBoundries.maxX) * 0.5f,
+            (screenBoundries.minY + screenBoundries.maxY) * 0.5f,
+            transform.position.z);
+
+        float elapsed = 0f;
+        Vector3 startPos = transform.position;
+        float startZoom = cam.orthographicSize;
+        float endZoom = maxZoom;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+            transform.position = Vector3.Lerp(startPos, centerPos, t);
+            cam.orthographicSize = Mathf.Lerp(startZoom, endZoom, t);
+            yield return null;
+        }
+
+        transform.position = centerPos;
+        cam.orthographicSize = endZoom;
         centerCoroutine = null;
     }
 }
