@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 // CHANGES FOR ANDROID + center-on-end
 public class CameraScript : MonoBehaviour
 {
-    public float maxZoom = 530f, minZoom = 150f;
+    public float minZoom = 150f;
+    private float maxZoom;
     public float puncZoomSpeed = 0.9f, mouseZoomSpeed = 150f;
     public float mouseFollowSpeed = 1f, touchPanSpeed = 1f;
     public ScreenBoundriesScript screenBoundries;
@@ -55,6 +56,8 @@ public class CameraScript : MonoBehaviour
 
         if (Input.touchCount == 2)
             HandlePinch();
+
+        UpdateMaxZoom();
 
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
 
@@ -143,8 +146,43 @@ public class CameraScript : MonoBehaviour
         return new Vector3(delta.x * worldPerPixel, delta.y * worldPerPixel, 0f);
     }
 
-    // публичный вызов — плавно переместить камеру в центр игровой области
-    public void MoveToCenterSmooth(float duration = 0.6f, bool resetZoomToStart = true)
+    IEnumerator ResetZoomSmooth()
+    {
+        float duration = 0.25f;
+        float elapsed = 0f;
+        float initialZoom = cam.orthographicSize;
+
+        float targetZoom = maxZoom;
+
+        while (elapsed < duration)
+        {
+            // Remember to hange for slowmotion
+            elapsed += Time.deltaTime;
+
+            cam.orthographicSize = Mathf.Lerp(initialZoom, targetZoom, elapsed / duration);
+            screenBoundries.RecalculateBounds();
+            transform.position = screenBoundries.GetClampedCameraPosition(transform.position);
+            yield return null;
+        }
+        cam.orthographicSize = startZoom;
+        screenBoundries.RecalculateBounds();
+        transform.position = screenBoundries.GetClampedCameraPosition(transform.position);
+    }
+
+    void UpdateMaxZoom()
+    {
+        if (screenBoundries == null || cam == null)
+            return;
+
+        Rect wb = screenBoundries.worldBounds;
+        float maxZoomHeight = wb.height / 2f;
+        float maxZoomWidth = (wb.height / 2f) / cam.aspect;
+
+        maxZoom = Mathf.Min(maxZoomHeight, maxZoomWidth);
+    }
+
+// публичный вызов — плавно переместить камеру в центр игровой области
+public void MoveToCenterSmooth(float duration = 0.6f, bool resetZoomToStart = true)
     {
         if (centerCoroutine != null) StopCoroutine(centerCoroutine);
         centerCoroutine = StartCoroutine(MoveToCenterCoroutine(duration, resetZoomToStart));

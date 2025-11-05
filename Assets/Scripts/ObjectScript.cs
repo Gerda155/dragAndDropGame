@@ -140,7 +140,7 @@ public class ObjectScript : MonoBehaviour
             }
         }
 
-        FlyingObjectsScript[] flyingObjects = FindObjectsOfType<FlyingObjectsScript>();
+       flyingObjectsScript[] flyingObjects = FindObjectsOfType<flyingObjectsScript>();
         foreach (var obj in flyingObjects)
         {
             Destroy(obj.gameObject);
@@ -170,7 +170,7 @@ public class ObjectScript : MonoBehaviour
             v.SetActive(false);
         }
 
-        FlyingObjectsScript[] flyingObjects = FindObjectsOfType<FlyingObjectsScript>();
+        flyingObjectsScript[] flyingObjects = FindObjectsOfType<flyingObjectsScript>();
         foreach (var obj in flyingObjects)
         {
             Destroy(obj.gameObject);

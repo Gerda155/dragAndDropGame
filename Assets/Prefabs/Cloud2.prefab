@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3151913780031325411}
   - component: {fileID: 1269569941547734032}
   - component: {fileID: 4101849138383166873}
+  - component: {fileID: 7896258770320967951}
   m_Layer: 5
   m_Name: Cloud2
   m_TagString: Untagged
@@ -152,3 +153,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 100, y: 55}
   m_EdgeRadius: 0
+--- !u!114 &7896258770320967951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6285166934946355477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecc4965e083226479fff4eb0b081a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  waveAmplitude: 23
+  waveFrequency: 0.8
+  fadeDuration: 2

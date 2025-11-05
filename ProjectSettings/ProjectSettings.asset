@@ -773,11 +773,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 3168699d-9476-43d5-adb8-5f1179e05700
+  cloudProjectId: 59aa5886-0286-4b27-b947-556fd81407f5
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: DragAndDropGames
-  organizationId: aleksandr_ostapjuk
+  organizationId: gerda155
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

@@ -1,62 +1,64 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class FlyingObjectsSpawnScript : MonoBehaviour
+//CHANGES NOT NEEDED FOR ANDROID
+public class FlyingObjectSpawnScript : MonoBehaviour
 {
-    private ScreenBoundriesScript screenBoundriesScript;
-    public GameObject[] cloudsPrefabs;
+    ScreenBoundriesScript screenBoundriesScript;
+    public GameObject[] cludsPrefabs;
     public GameObject[] objectPrefabs;
     public Transform spawnPoint;
 
     public float cloudSpawnInterval = 2f;
     public float objectSpawnInterval = 3f;
     private float minY, maxY;
+    public float cloudMinSpeed = 1.5f;
+    public float cloudMaxSpeed = 150f;
+    public float objectMinSpeed = 2f;
+    public float objectMaxSpeed = 200f;
 
-    private float cloudMinSpeed = 1.5f;
-    private float cloudMaxSpeed = 150f;
-    private float objectMinSpeed = 2f;
-    private float objectMaxSpeed = 200f;
+
 
     void Start()
     {
-        screenBoundriesScript = FindAnyObjectByType<ScreenBoundriesScript>();
+        screenBoundriesScript = FindFirstObjectByType<ScreenBoundriesScript>();
         minY = screenBoundriesScript.minY;
         maxY = screenBoundriesScript.maxY;
-
         InvokeRepeating(nameof(SpawnCloud), 0f, cloudSpawnInterval);
         InvokeRepeating(nameof(SpawnObject), 0f, objectSpawnInterval);
     }
 
     void SpawnCloud()
     {
-        if (cloudsPrefabs.Length == 0) return;
+        if (cludsPrefabs.Length == 0)
+            return;
 
-        GameObject cloudPrefab = cloudsPrefabs[Random.Range(0, cloudsPrefabs.Length)];
+        GameObject cloudPrefab = cludsPrefabs[Random.Range(0, cludsPrefabs.Length)];
         float y = Random.Range(minY, maxY);
         Vector3 spawnPosition = new Vector3(spawnPoint.position.x, y, spawnPoint.position.z);
-
-        GameObject cloud = Instantiate(cloudPrefab, spawnPosition, Quaternion.identity, spawnPoint.parent);
-        cloud.transform.SetAsLastSibling();
-
+        GameObject cloud =
+            Instantiate(cloudPrefab, spawnPosition, Quaternion.identity, spawnPoint);
         float movementSpeed = Random.Range(cloudMinSpeed, cloudMaxSpeed);
-        var controller = cloud.GetComponent<FlyingObjectsScript>();
-        if (controller != null)
-            controller.speed = movementSpeed;
+        flyingObjectsScript controller =
+            cloud.GetComponent<flyingObjectsScript>();
+        controller.speed = movementSpeed;
+
     }
 
     void SpawnObject()
     {
-        if (objectPrefabs.Length == 0) return;
+        if (objectPrefabs.Length == 0)
+            return;
 
         GameObject objectPrefab = objectPrefabs[Random.Range(0, objectPrefabs.Length)];
         float y = Random.Range(minY, maxY);
+
         Vector3 spawnPosition = new Vector3(-spawnPoint.position.x, y, spawnPoint.position.z);
 
-        GameObject flyObject = Instantiate(objectPrefab, spawnPosition, Quaternion.identity, spawnPoint.parent);
-        flyObject.transform.SetAsLastSibling();
-
+        GameObject flyingObject =
+            Instantiate(objectPrefab, spawnPosition, Quaternion.identity, spawnPoint);
         float movementSpeed = Random.Range(objectMinSpeed, objectMaxSpeed);
-        var controller = flyObject.GetComponent<FlyingObjectsScript>();
-        if (controller != null)
-            controller.speed = -movementSpeed;
+        flyingObjectsScript controller =
+            flyingObject.GetComponent<flyingObjectsScript>();
+        controller.speed = -movementSpeed;
     }
 }

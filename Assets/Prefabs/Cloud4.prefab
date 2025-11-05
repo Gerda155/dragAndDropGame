@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7837958208790548658}
   - component: {fileID: 5904389499482908778}
   - component: {fileID: 8260532903976683799}
+  - component: {fileID: 3417676304932200326}
+  - component: {fileID: -7950960363567731291}
   m_Layer: 5
   m_Name: Cloud4
   m_TagString: Untagged
@@ -152,3 +154,34 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 100, y: 40}
   m_EdgeRadius: 0
+--- !u!114 &3417676304932200326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2549744821702696453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &-7950960363567731291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2549744821702696453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecc4965e083226479fff4eb0b081a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  waveAmplitude: 20
+  waveFrequency: 1
+  fadeDuration: 1.5
