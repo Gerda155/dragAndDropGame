@@ -38,11 +38,11 @@ public class flyingObjectsScript : MonoBehaviour
         rectTransform.anchoredPosition += new Vector2(-speed * Time.deltaTime, waveOffset * Time.deltaTime);
 
         // Уничтожение при выходе за экран
-        if (speed > 0 && transform.position.x < (screenBoundriesScript.minX + 80) && !isFadingOut)
+        if (speed > 0 && transform.position.x < (screenBoundriesScript.worldBounds.xMin + 80) && !isFadingOut)
         {
             StartToDestroy(Color.cyan);
         }
-        if (speed < 0 && transform.position.x > (screenBoundriesScript.maxX - 80) && !isFadingOut)
+        if (speed < 0 && transform.position.x > (screenBoundriesScript.worldBounds.xMax - 80) && !isFadingOut)
         {
             StartToDestroy(Color.cyan);
         }
