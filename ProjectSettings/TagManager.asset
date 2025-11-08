@@ -17,6 +17,7 @@ TagManager:
   - e61
   - tractor
   - buss
+  - inter
   layers:
   - Default
   - TransparentFX
