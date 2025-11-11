@@ -713,7 +713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _androidGameId: 5979317
-  _testMode: 1
+  _testMode: 0
 --- !u!114 &1783962755
 MonoBehaviour:
   m_ObjectHideFlags: 0
