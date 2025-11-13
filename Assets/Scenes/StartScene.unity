@@ -193,6 +193,9 @@ GameObject:
   - component: {fileID: 168083934}
   - component: {fileID: 168083933}
   - component: {fileID: 168083932}
+  - component: {fileID: 168083937}
+  - component: {fileID: 168083936}
+  - component: {fileID: 168083938}
   m_Layer: 0
   m_Name: ads
   m_TagString: Untagged
@@ -227,8 +230,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _androidAdUnitId: Interstitial_Android
-  _androidBannerId: Banner_Android
-  isReady: 0
   _interstitialAdButton: {fileID: 0}
 --- !u!114 &168083934
 MonoBehaviour:
@@ -245,6 +246,8 @@ MonoBehaviour:
   adsInitializer: {fileID: 168083932}
   interstitialAd: {fileID: 168083933}
   turnOffInterstitialAd: 0
+  rewardedAds: {fileID: 168083936}
+  turnOffRewardedAds: 0
 --- !u!4 &168083935
 Transform:
   m_ObjectHideFlags: 0
@@ -260,6 +263,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &168083936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168083931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13468221c5d1254780d17a5d52aed76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _androidAdUnitId: Rewarded_Android
+  _rewardedAdButton: {fileID: 0}
+  flayingObjectManager: {fileID: 168083938}
+--- !u!114 &168083937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168083931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eafad50b393c9f4fb4e6ca0d5412b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _androidBannerId: Banner_Android
+--- !u!114 &168083938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168083931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8ba4e6a8508274aa8573da82919cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &456826022
 GameObject:
   m_ObjectHideFlags: 0

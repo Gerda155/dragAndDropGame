@@ -1,68 +1,34 @@
 ﻿using UnityEngine;
 using UnityEngine.Advertisements;
-using System.Collections;
 
-public class BannerAd : MonoBehaviour, IUnityAdsInitializationListener
+public class BannerAd : MonoBehaviour
 {
-    [Header("Unity Ads Settings")]
-    [SerializeField] string _androidGameId = "5979317"; // например 6123456
-    [SerializeField] string _bannerAdUnitId = "Banner_Android";
-    [SerializeField] bool _testMode = true;
+    [SerializeField] string _androidBannerId = "Banner_Android";
 
-    private string _gameId;
-
-    void Start()
+    private void Start()
     {
-        InitializeAds();
-    }
-
-    void InitializeAds()
-    {
-        _gameId = _androidGameId;
-        Advertisement.Initialize(_gameId, _testMode, this);
-    }
-
-    public void OnInitializationComplete()
-    {
-        Debug.Log("Unity Ads инициализированы успешно.");
-        StartCoroutine(LoadAndShowBanner());
-    }
-
-    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
-    {
-        Debug.LogError($"Ошибка инициализации Unity Ads: {error} — {message}");
-    }
-
-    IEnumerator LoadAndShowBanner()
-    {
-        // Подожди, пока система полностью активна
-        yield return new WaitForSeconds(1f);
-
-        Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
-        Debug.Log("Загрузка баннера...");
-
-        // Загружаем баннер
-        Advertisement.Banner.Load(_bannerAdUnitId, new BannerLoadOptions
+        // Показываем баннер сразу, если Unity Ads уже инициализирован
+        if (Advertisement.isInitialized)
         {
-            loadCallback = OnBannerLoaded,
-            errorCallback = OnBannerError
-        });
-    }
-
-    void OnBannerLoaded()
-    {
-        Debug.Log("Баннер загружен, показываю...");
-        Advertisement.Banner.Show(_bannerAdUnitId);
-    }
-
-    void OnBannerError(string message)
-    {
-        Debug.LogError($"Ошибка при загрузке баннера: {message}");
+            ShowBanner();
+        }
+        else
+        {
+            // Ждём инициализации через AdManager
+            AdsInitializer adsInitializer = FindFirstObjectByType<AdsInitializer>();
+            if (adsInitializer != null)
+                adsInitializer.OnAdsInitialized += ShowBanner;
+        }
     }
 
     public void ShowBanner()
     {
-        StartCoroutine(LoadAndShowBanner());
+        Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
+        Advertisement.Banner.Show(_androidBannerId);
     }
 
+    public void HideBanner()
+    {
+        Advertisement.Banner.Hide();
+    }
 }

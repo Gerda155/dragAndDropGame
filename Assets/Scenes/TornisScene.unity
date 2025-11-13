@@ -713,7 +713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _androidGameId: 5979317
-  _testMode: 0
+  _testMode: 1
 --- !u!114 &1783962755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,6 +744,8 @@ MonoBehaviour:
   adsInitializer: {fileID: 1783962754}
   interstitialAd: {fileID: 1783962755}
   turnOffInterstitialAd: 0
+  rewardedAds: {fileID: 0}
+  turnOffRewardedAds: 0
 --- !u!4 &1783962757
 Transform:
   m_ObjectHideFlags: 0

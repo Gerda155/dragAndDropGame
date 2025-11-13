@@ -12,7 +12,11 @@ public class AdManager : MonoBehaviour
     public RewardedAds rewardedAds;
     [SerializeField] bool turnOffRewardedAds = false;
 
+    private BannerAd bannerAd;
+
     public static AdManager Instance { get; private set; }
+
+    private bool firstSceneLoad = false;
 
     private void Awake()
     {
@@ -33,16 +37,21 @@ public class AdManager : MonoBehaviour
 
     private void HandleAdsInitialized()
     {
-        if (!turnOffInterstitialAd)
+        // Показываем баннер
+        bannerAd = FindFirstObjectByType<BannerAd>();
+        if (bannerAd != null)
+            bannerAd.ShowBanner();
+
+        // Загружаем Interstitial
+        if (!turnOffInterstitialAd && interstitialAd != null)
         {
             interstitialAd.OnInterstitialAdReady += HandleInterstitialReady;
             interstitialAd.LoadAd();
         }
 
-        if (!turnOffRewardedAds)
-        {
+        // Загружаем Rewarded
+        if (!turnOffRewardedAds && rewardedAds != null)
             rewardedAds.LoadAd();
-        }
     }
 
     private void HandleInterstitialReady()
@@ -62,44 +71,50 @@ public class AdManager : MonoBehaviour
     private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
     private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
-    private bool firstSceneLoad = false;
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (interstitialAd == null)
-            interstitialAd = FindFirstObjectByType<InterstitialAd>();
-
-        Button interstitialButton =
-            GameObject.FindGameObjectWithTag("inter")?.GetComponent<Button>();
-
-        if (interstitialAd != null && interstitialButton != null)
-            interstitialAd.SetButton(interstitialButton);
-
-        if (rewardedAds == null)
-            rewardedAds = FindFirstObjectByType<RewardedAds>();
-
-        Button rewardedAdButton =
-            GameObject.FindGameObjectWithTag("reward")?.GetComponent<Button>();
-
-        if (rewardedAds != null && rewardedAdButton != null)
-            rewardedAds.SetButton(rewardedAdButton);
-
         if (!firstSceneLoad)
         {
             firstSceneLoad = true;
-            Debug.Log("First time scene loaded!");
+            Debug.Log("First scene loaded, skip interstitial.");
             return;
         }
 
         Debug.Log("Scene loaded!");
 
-        // Показ interstitial на каждой следующей сцене
+        // Подключаем кнопки Interstitial
+        if (interstitialAd == null)
+            interstitialAd = FindFirstObjectByType<InterstitialAd>();
+
+        Button interstitialButton = GameObject.FindGameObjectWithTag("inter")?.GetComponent<Button>();
+        if (interstitialAd != null && interstitialButton != null)
+            interstitialAd.SetButton(interstitialButton);
+
+        // Подключаем кнопки Rewarded
+        if (rewardedAds == null)
+            rewardedAds = FindFirstObjectByType<RewardedAds>();
+
+        Button rewardedButton = GameObject.FindGameObjectWithTag("reward")?.GetComponent<Button>();
+        if (rewardedAds != null && rewardedButton != null)
+            rewardedAds.SetButton(rewardedButton);
+
+        // Показ Interstitial после загрузки
         if (!turnOffInterstitialAd && interstitialAd != null)
         {
+            interstitialAd.OnInterstitialAdReady += ShowInterstitialAfterLoad;
             interstitialAd.LoadAd();
-            interstitialAd.ShowAd();
         }
 
+        // Подгружаем Rewarded на новой сцене
         if (!turnOffRewardedAds && rewardedAds != null)
             rewardedAds.LoadAd();
+    }
+
+    private void ShowInterstitialAfterLoad()
+    {
+        if (interstitialAd != null && interstitialAd.isReady)
+            interstitialAd.ShowAd();
+
+        interstitialAd.OnInterstitialAdReady -= ShowInterstitialAfterLoad;
     }
 }
