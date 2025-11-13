@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Advertisements;
+using System.Collections;
 
 public class BannerAd : MonoBehaviour
 {
@@ -7,19 +8,17 @@ public class BannerAd : MonoBehaviour
 
     private void Start()
     {
-        // Показываем баннер сразу, если Unity Ads уже инициализирован
-        if (Advertisement.isInitialized)
-        {
-            ShowBanner();
-        }
-        else
-        {
-            // Ждём инициализации через AdManager
-            AdsInitializer adsInitializer = FindFirstObjectByType<AdsInitializer>();
-            if (adsInitializer != null)
-                adsInitializer.OnAdsInitialized += ShowBanner;
-        }
+        StartCoroutine(WaitAndShowBanner());
     }
+
+    private IEnumerator WaitAndShowBanner()
+    {
+        while (!Advertisement.isInitialized)
+            yield return null;
+
+        ShowBanner();
+    }
+
 
     public void ShowBanner()
     {

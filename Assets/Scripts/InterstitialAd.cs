@@ -7,14 +7,14 @@ using UnityEngine.UI;
 
 public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
-    [SerializeField] string _androidAdUnitId = "Interstitial_Android";
-    string _adUnitId;
+    [SerializeField] private string _androidAdUnitId = "Interstitial_Android";
+    private string _adUnitId;
 
     public event Action OnInterstitialAdReady;
     public bool isReady = false;
-    [SerializeField] Button _interstitialAdButton;
+    [SerializeField] private Button _interstitialAdButton;
 
-    void Awake()
+    private void Awake()
     {
         _adUnitId = _androidAdUnitId;
         SceneManager.sceneLoaded += OnSceneLoaded; // подписка на смену сцены
@@ -27,7 +27,7 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
 
     private void Update()
     {
-        if (_interstitialAdButton != null && AdManager.Instance != null && AdManager.Instance.interstitialAd != null)
+        if (_interstitialAdButton != null)
         {
             _interstitialAdButton.interactable = isReady;
         }
@@ -35,7 +35,7 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Если это не первая сцена, показываем рекламу
+        // Показываем рекламу при переходе на сцены, кроме первой
         if (scene.buildIndex != 0)
         {
             ShowInterstitial();
@@ -44,7 +44,6 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
 
     public void OnInterstitialAdButtonClicked()
     {
-        Debug.Log("Interstitial ad button clicked!");
         ShowInterstitial();
     }
 
@@ -52,11 +51,10 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
     {
         if (!Advertisement.isInitialized)
         {
-            Debug.LogWarning("Tried to load interstitial ad before Unity ads was initialized!");
+            Debug.LogWarning("Unity Ads не инициализирован!");
             return;
         }
 
-        Debug.Log("Loading interstitial ad");
         Advertisement.Load(_adUnitId, this);
     }
 
@@ -69,7 +67,7 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
         }
         else
         {
-            Debug.LogWarning("Interstitial ad is not ready yet!");
+            Debug.LogWarning("Interstitial ad не готов!");
             LoadAd();
         }
     }
@@ -81,7 +79,9 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
 
     public void OnUnityAdsAdLoaded(string placementId)
     {
-        Debug.Log("Interstitial ad loaded!");
+        if (placementId != _adUnitId) return;
+
+        Debug.Log("Interstitial ad загружен!");
         if (_interstitialAdButton != null)
             _interstitialAdButton.interactable = true;
 
@@ -91,53 +91,52 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
 
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
     {
-        Debug.LogWarning("Failed to load interstitial ad!");
+        Debug.LogWarning($"Ошибка загрузки рекламы: {message}");
         LoadAd();
     }
 
     public void OnUnityAdsShowClick(string placementId)
     {
-        Debug.Log("User clicked on interstitial ad!");
+        Debug.Log("Реклама кликнута!");
     }
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
-        if (showCompletionState == UnityAdsShowCompletionState.COMPLETED)
+        if (placementId != _adUnitId) return;
+
+        Debug.Log("Interstitial ad завершена!");
+
+        // Только для сцен кроме первой
+        if (SceneManager.GetActiveScene().buildIndex != 0 && showCompletionState == UnityAdsShowCompletionState.COMPLETED)
         {
-            Debug.Log("Interstitial ad watched completely!");
             StartCoroutine(SlowDownTimeTemporarily(30f));
-            LoadAd();
         }
-        else
-        {
-            Debug.Log("Interstitial ad skipped or status is unknown!");
-            LoadAd();
-        }
+
+        LoadAd();
     }
 
     private IEnumerator SlowDownTimeTemporarily(float seconds)
     {
-        if (SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            Time.timeScale = 0.4f;
-            Debug.Log("Time slowed down to 0.4x for " + seconds + " sec");
-            yield return new WaitForSecondsRealtime(seconds);
-            Time.timeScale = 1.0f;
-            Debug.Log("Time restored to normal!");
-        }
+        // Ждем кадр, чтобы реклама точно закрылась
+        yield return new WaitForEndOfFrame();
+
+        Time.timeScale = 0.4f;
+        Debug.Log($"Время замедлено до 0.4x на {seconds} секунд");
+        yield return new WaitForSecondsRealtime(seconds);
+        Time.timeScale = 1f;
+        Debug.Log("Время восстановлено");
     }
 
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
     {
-        Debug.Log("Error showing interstitial ad!");
+        Debug.LogWarning($"Ошибка показа рекламы: {message}");
         LoadAd();
     }
 
     public void OnUnityAdsShowStart(string placementId)
     {
-        Debug.Log("Showing interstitial ad at this moment!");
-        if (SceneManager.GetActiveScene().buildIndex != 0)
-            Time.timeScale = 0f;
+        Debug.Log("Реклама показана!");
+        // НЕ трогаем Time.timeScale — Unity Ads сама замораживает игру на телефоне
     }
 
     public void SetButton(Button button)
