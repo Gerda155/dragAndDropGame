@@ -19,6 +19,7 @@ TagManager:
   - buss
   - inter
   - reward
+  - bannerButton
   layers:
   - Default
   - TransparentFX

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bgHanojas_0: -381731407036357516
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
