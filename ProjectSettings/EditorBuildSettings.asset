@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/CityScene.unity
     guid: 3e371be1e98b02341a2ccf41c2924deb
   - enabled: 1
-    path: Assets/Scenes/TornisScene.unity
-    guid: 66d86961a25a8874da5c3ad27cce101d
+    path: Assets/Scenes/Tornis.unity
+    guid: 446eef18026c6714f9fe61ba22f00b95
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

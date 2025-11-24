@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _androidAdUnitId: Interstitial_Android
+  isReady: 0
   _interstitialAdButton: {fileID: 0}
 --- !u!114 &168083934
 MonoBehaviour:
@@ -246,8 +247,10 @@ MonoBehaviour:
   adsInitializer: {fileID: 168083932}
   interstitialAd: {fileID: 168083933}
   turnOffInterstitialAd: 0
-  rewardedAds: {fileID: 168083936}
+  rewardedAds: {fileID: 0}
   turnOffRewardedAds: 0
+  bannerAd: {fileID: 0}
+  turnOffBannerAd: 0
 --- !u!4 &168083935
 Transform:
   m_ObjectHideFlags: 0
@@ -290,7 +293,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eafad50b393c9f4fb4e6ca0d5412b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _androidBannerId: Banner_Android
+  _androidAdUnitId: Banner_Android
+  _bannerButton: {fileID: 0}
+  isBannerVisible: 0
+  _bannerPosition: 4
 --- !u!114 &168083938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,7 +539,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: TornisScene
+          m_StringArgument: Tornis
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &459637995
