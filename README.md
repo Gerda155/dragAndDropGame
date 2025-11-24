@@ -89,6 +89,3 @@ Hanoi Tower is a classic logic puzzle where the player must move all disks from 
 * 🗼 Tower Detection – disks automatically snap into towers.
 * 🏆 Win Condition System – checks when all disks are moved correctly.
 * 📜 Rules Window – opens/closes through UI buttons.
-
-## 📸 Screenshot
-![hanoja](Assets/Sources/Images/hajonas/hanoi.png)
