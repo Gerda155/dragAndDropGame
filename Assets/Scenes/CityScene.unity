@@ -5323,6 +5323,8 @@ MonoBehaviour:
   turnOffInterstitialAd: 0
   rewardedAds: {fileID: 1506352978}
   turnOffRewardedAds: 0
+  bannerAd: {fileID: 1506352980}
+  turnOffBannerAd: 0
 --- !u!4 &1506352976
 Transform:
   m_ObjectHideFlags: 0
@@ -5377,7 +5379,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eafad50b393c9f4fb4e6ca0d5412b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _androidBannerId: Banner_Android
+  _androidAdUnitId: Banner_Android
+  _bannerButton: {fileID: 1762591294}
+  isBannerVisible: 0
+  _bannerPosition: 4
 --- !u!1 &1520155634
 GameObject:
   m_ObjectHideFlags: 0
