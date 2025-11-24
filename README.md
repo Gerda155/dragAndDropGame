@@ -91,4 +91,4 @@ Hanoi Tower is a classic logic puzzle where the player must move all disks from 
 * 📜 Rules Window – opens/closes through UI buttons.
 
 ## 📸 Screenshot
-![Main Menu](Assets/Sources/Images/hajonas/hanoi.png)
+![hanoja](Assets/Sources/Images/hajonas/hanoi.png)
