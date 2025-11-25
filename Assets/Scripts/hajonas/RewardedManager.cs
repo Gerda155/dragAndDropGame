@@ -14,34 +14,23 @@ public class RewardedManager : MonoBehaviour
     public BannerAd bannerAd;
     [SerializeField] bool turnOffBannerAd = false;
 
-    public static RewardedManager Instance { get; private set; }
-
     private void Awake()
     {
         if (adsInitializer == null)
             adsInitializer = FindFirstObjectByType<AdsInitializer>();
-
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         adsInitializer.OnAdsInitialized += HandleAdsInitialized;
     }
 
     private void HandleAdsInitialized()
     {
-        if (!turnOffInterstitialAd)
+        if (!turnOffInterstitialAd && interstitialAd != null)
         {
             interstitialAd.OnInterstitialAdReady += HandleInterstitialReady;
             interstitialAd.LoadAd();
         }
 
-        if (!turnOffRewardedAds)
+        if (!turnOffRewardedAds && rewardedAds != null)
         {
             rewardedAds.LoadAd();
         }
@@ -49,7 +38,7 @@ public class RewardedManager : MonoBehaviour
 
     private void HandleInterstitialReady()
     {
-        if (!firstAdShown)
+        if (!firstAdShown && interstitialAd != null)
         {
             Debug.Log("Showing first time interstitial ad automatically!");
             interstitialAd.ShowAd();
@@ -71,27 +60,14 @@ public class RewardedManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private bool firstSceneLoad = false;
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (interstitialAd == null)
-            interstitialAd = FindFirstObjectByType<InterstitialAd>();
+        // На новой сцене ищем новые объекты рекламы
+        interstitialAd = FindFirstObjectByType<InterstitialAd>();
+        rewardedAds = FindFirstObjectByType<rewarded>();
+        bannerAd = FindFirstObjectByType<BannerAd>();
 
-        if (rewardedAds == null)
-            rewardedAds = FindFirstObjectByType<rewarded>();
-
-        if (bannerAd == null)
-            bannerAd = FindFirstObjectByType<BannerAd>();
-
-        if (!firstSceneLoad)
-        {
-            firstSceneLoad = true;
-            Debug.Log("First time scene loaded!");
-            return;
-        }
-
-        Debug.Log("Scene loaded!");
-        HandleAdsInitialized(); // баннер снова грузится на новой сцене
+        Debug.Log("Scene loaded, ads re-initialized!");
+        HandleAdsInitialized();
     }
 }

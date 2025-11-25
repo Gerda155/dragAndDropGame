@@ -19,6 +19,15 @@ public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
 
         if (flayingObjectManager == null)
             flayingObjectManager = FindFirstObjectByType<FlayingObjectManager>();
+
+        // Если кнопка назначена в инспекторе, сразу привязываем
+        if (_rewardedAdButton != null)
+            SetButton(_rewardedAdButton);
+    }
+
+    private void Start()
+    {
+        LoadAd();
     }
 
     public void LoadAd()
@@ -36,9 +45,9 @@ public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
     {
         if (button == null) return;
 
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(ShowAd);
         _rewardedAdButton = button;
+        _rewardedAdButton.onClick.RemoveAllListeners();
+        _rewardedAdButton.onClick.AddListener(ShowAd);
         _rewardedAdButton.interactable = adLoaded;
     }
 
@@ -82,15 +91,8 @@ public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
 
     // ---------------- IUnityAdsShowListener ----------------
 
-    public void OnUnityAdsShowStart(string placementId)
-    {
-        Debug.Log("Rewarded ad started");
-    }
-
-    public void OnUnityAdsShowClick(string placementId)
-    {
-        Debug.Log("Rewarded ad clicked");
-    }
+    public void OnUnityAdsShowStart(string placementId) => Debug.Log("Rewarded ad started");
+    public void OnUnityAdsShowClick(string placementId) => Debug.Log("Rewarded ad clicked");
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
@@ -98,12 +100,10 @@ public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
         {
             Debug.Log("Rewarded ad completed!");
 
-            // динамически ищем FlayingObjectManager, если его ещё нет
             if (flayingObjectManager == null)
                 flayingObjectManager = FindFirstObjectByType<FlayingObjectManager>();
 
-            if (flayingObjectManager != null)
-                flayingObjectManager.DestroyAllFlyingObjects();
+            flayingObjectManager?.DestroyAllFlyingObjects();
 
             if (_rewardedAdButton != null)
                 _rewardedAdButton.interactable = false;

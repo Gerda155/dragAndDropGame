@@ -20,6 +20,15 @@ public class rewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
 
         if (hanoiManager == null)
             hanoiManager = FindFirstObjectByType<HanoiGameManager>();
+
+        // Если кнопка назначена в инспекторе, сразу привязываем
+        if (_rewardedAdButton != null)
+            SetButton(_rewardedAdButton);
+    }
+
+    private void Start()
+    {
+        LoadAd();
     }
 
     public void LoadAd()
@@ -37,10 +46,9 @@ public class rewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
     {
         if (button == null) return;
 
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(ShowAd);
-
         _rewardedAdButton = button;
+        _rewardedAdButton.onClick.RemoveAllListeners();
+        _rewardedAdButton.onClick.AddListener(ShowAd);
         _rewardedAdButton.interactable = adLoaded;
     }
 
@@ -84,15 +92,8 @@ public class rewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
 
     // ---------------- SHOW LISTENER ----------------
 
-    public void OnUnityAdsShowStart(string placementId)
-    {
-        Debug.Log("Rewarded ad started");
-    }
-
-    public void OnUnityAdsShowClick(string placementId)
-    {
-        Debug.Log("Rewarded ad clicked");
-    }
+    public void OnUnityAdsShowStart(string placementId) => Debug.Log("Rewarded ad started");
+    public void OnUnityAdsShowClick(string placementId) => Debug.Log("Rewarded ad clicked");
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
@@ -100,15 +101,10 @@ public class rewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
         {
             Debug.Log("Rewarded ad completed!");
 
-            // повторно находим менеджер, если он не назначен
             if (hanoiManager == null)
                 hanoiManager = FindFirstObjectByType<HanoiGameManager>();
 
-            if (hanoiManager != null)
-            {
-                // уменьшаем шаги на 10
-                hanoiManager.ReduceMoves(10);
-            }
+            hanoiManager?.ReduceMoves(10);
 
             if (_rewardedAdButton != null)
                 _rewardedAdButton.interactable = false;
