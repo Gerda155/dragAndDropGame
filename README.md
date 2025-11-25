@@ -70,3 +70,23 @@
 ![Main Menu](Assets/Sources/Images/win.png)
 * Lose Screen
 ![Main Menu](Assets/Sources/Images/lose.png)
+---
+# 🧠 Hanoi Tower
+
+Hanoi Tower is a classic logic puzzle where the player must move all disks from the first tower to the last one while following strict rules. The game includes drag-and-drop movement, physics, and automatic win detection.
+
+## 🕹️ How to Play
+* Drag the top disk from any tower to another tower.
+* You can move only one disk at a time.
+* A bigger disk cannot be placed on a smaller one.
+* Move all disks to the third tower to win.
+
+## ✨ Features
+* 🖱️ Physics-based Drag & Drop – disks use Rigidbody + Colliders.
+* 📏 Size Validation – prevents placing large disks on smaller ones.
+* 🗼 Tower Detection – disks automatically snap into towers.
+* 🏆 Win Condition System – checks when all disks are moved correctly.
+* 📜 Rules Window – opens/closes through UI buttons.
+
+## 📸 Screenshot
+![hanoi](Assets/Sources/Images/hajonas/hanoi.png)
