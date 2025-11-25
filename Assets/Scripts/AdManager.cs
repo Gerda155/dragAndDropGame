@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class AdManager : MonoBehaviour
 {
@@ -17,7 +16,6 @@ public class AdManager : MonoBehaviour
 
     public static AdManager Instance { get; private set; }
 
-
     private void Awake()
     {
         if (adsInitializer == null)
@@ -30,7 +28,6 @@ public class AdManager : MonoBehaviour
         }
 
         Instance = this;
-
         DontDestroyOnLoad(gameObject);
 
         adsInitializer.OnAdsInitialized += HandleAdsInitialized;
@@ -48,11 +45,6 @@ public class AdManager : MonoBehaviour
         {
             rewardedAds.LoadAd();
         }
-
-        if (!turnOffBannerAd)
-        {
-            bannerAd.LoadBanner();
-        }
     }
 
     private void HandleInterstitialReady()
@@ -62,7 +54,6 @@ public class AdManager : MonoBehaviour
             Debug.Log("Showing first time interstitial ad automatically!");
             interstitialAd.ShowAd();
             firstAdShown = true;
-
         }
         else
         {
@@ -81,43 +72,17 @@ public class AdManager : MonoBehaviour
     }
 
     private bool firstSceneLoad = false;
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (interstitialAd == null)
             interstitialAd = FindFirstObjectByType<InterstitialAd>();
 
-        // --- interstitial button ---
-        GameObject interGO = GameObject.FindGameObjectWithTag("inter");
-        if (interGO != null)
-        {
-            Button interstitialButton = interGO.GetComponent<Button>();
-            if (interstitialAd != null && interstitialButton != null)
-                interstitialAd.SetButton(interstitialButton);
-        }
-
-        // --- rewarded ads ---
         if (rewardedAds == null)
             rewardedAds = FindFirstObjectByType<RewardedAds>();
 
-        GameObject rewardGO = GameObject.FindGameObjectWithTag("reward");
-        if (rewardGO != null)
-        {
-            Button rewardedAdButton = rewardGO.GetComponent<Button>();
-            if (rewardedAds != null && rewardedAdButton != null)
-                rewardedAds.SetButton(rewardedAdButton);
-        }
-
-        // --- banner ads ---
         if (bannerAd == null)
             bannerAd = FindFirstObjectByType<BannerAd>();
-
-        GameObject bannerGO = GameObject.FindGameObjectWithTag("bannerButton");
-        if (bannerGO != null)
-        {
-            Button bannerButton = bannerGO.GetComponent<Button>();
-            if (bannerAd != null && bannerButton != null)
-                bannerAd.SetButton(bannerButton);
-        }
 
         if (!firstSceneLoad)
         {
@@ -127,7 +92,6 @@ public class AdManager : MonoBehaviour
         }
 
         Debug.Log("Scene loaded!");
-        HandleAdsInitialized();
+        HandleAdsInitialized(); // баннер снова грузится на новой сцене
     }
-
 }
